@@ -1,0 +1,20 @@
+.heading {
+    height: 1.5em;
+}
+
+.input {
+    /*background-color: khaki;*/
+    color: blue;
+}
+
+.inputSuccess {
+    color: darkseagreen;
+}
+
+.inputFailed {
+    color: red;
+}
+
+.button {
+    margin: 10px 0;
+}
