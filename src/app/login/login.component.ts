@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
   isPasswordCorrect: boolean;
   loginMessage: String;
   isLoginFailed: boolean;
-  stayLogin: boolean;
+  isRemainLogin: boolean;
   loginMessageFailed: String;
   isVisible = false;
   username: String;
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       this.loginMessage = '';
       this.isLoginFailed = false;
       console.log('System-Aktion > Anmeldung erfolgreich > Weiterleitung...');
-        if(this.stayLogin){
+        if(this.isRemainLogin){
           console.log('System-Aktion > Set Cookie > remain signed in');
         }
       } else {
