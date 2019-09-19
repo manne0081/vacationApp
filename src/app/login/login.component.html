@@ -1,19 +1,18 @@
 <div>
-  
+
   <div class="heading"><label>Bitte anmelden...</label></div>
   <div class="heading"><label>{{loginMessage}}</label></div>
   <!--
-  <div><input [(ngModel)]="username" Class="input" type="text" placeholder="Benutzername"></div>    
+  <div><input [(ngModel)]="username" Class="input" type="text" placeholder="Benutzername"></div>
   <div><input [(ngModel)]="username" [ngClass]="'input'" type="text" placeholder="Benutzername"></div>
   -->
-  <div><input [(ngModel)]="username" [ngClass]="{'input': isUsernameCorrect, 'inputFailed': !isUsernameCorrect}" type="text" placeholder="Benutzername"></div>
-  <div><input [(ngModel)]="password" [ngClass]="{'input': isPasswordCorrect, 'inputFailed': !isPasswordCorrect}" type="password" placeholder="Kennwort"></div>
+  <div><input [(ngModel)]="username" [ngClass]="{'inputFailed': !isUsernameCorrect}" type="text" placeholder="Benutzername"></div>
+  <div><input [(ngModel)]="password" [ngClass]="{'inputFailed': !isPasswordCorrect}" type="password" placeholder="Kennwort"></div>
   <button (click)="onClickLogin()" class="button login">Jetzt anmelden!</button>
-  
-  <div><input [(ngModel)]="isRemainLogin" type="checkbox" name="stayedLogin" value="Angemeldet bleiben.">Angemeldet bleiben.</div>
+
+  <div><input [(ngModel)]="isRememberLogin" type="checkbox" name="rememberLogin" value="Angemeldet bleiben.">Angemeldet bleiben!</div>
   <button class="button forgot-password">Kennwort vergessen?</button>
-  
+
   <p *ngIf="loginFailedStatus">{{loginFailedMessage}}</p>
-  
+
 </div>
-  

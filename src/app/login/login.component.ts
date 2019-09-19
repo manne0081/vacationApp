@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ɵBrowserPlatformLocation } from '@angular/platform-browser';
+import {createBundleIndexHost} from '@angular/compiler-cli';
 
 @Component({
   selector: 'app-login',
@@ -7,55 +7,62 @@ import { ɵBrowserPlatformLocation } from '@angular/platform-browser';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  isUsernameCorrect: boolean;
-  isPasswordCorrect: boolean;
-  loginMessage: String;
+  isUsernameCorrect = true;
+  isPasswordCorrect = true;
+  loginMessage: string;
   isLoginFailed: boolean;
-  isRemainLogin: boolean;
-  loginMessageFailed: String;
+  isRememberLogin: boolean;
+  loginMessageFailed: string;
   isVisible = false;
-  username: String;
-  password: String;
+  username: string;
+  password: string;
   constructor() { }
 
   ngOnInit() {
-    this.loginMessageFailed = "Benutzername oder Kennwort wurde falsch eingegeben!"
+    this.loginMessageFailed = 'Benutzername oder Kennwort wurde falsch eingegeben!';
   }
 
-  onClickLogin():void {   
+  onClickLogin(): void {
+    console.clear();
+    this.isUsernameCorrect = this.checkUsername(this.username);
+    this.isPasswordCorrect = this.checkPassword(this.password);
 
-    this.checkUsername();
-    this.checkPassword();
-
-    if(this.isUsernameCorrect && this.isPasswordCorrect) {
-      console.log('Login success'); 
+    if (this.isUsernameCorrect && this.isPasswordCorrect) {
+      console.log('Login success');
       this.loginMessage = '';
       this.isLoginFailed = false;
       console.log('System-Aktion > Anmeldung erfolgreich > Weiterleitung...');
-        if(this.isRemainLogin){
+        if (this.isRememberLogin) {
           console.log('System-Aktion > Set Cookie > remain signed in');
         }
       } else {
       console.log('Login failed');
-      this.loginMessage = 'Login fehlgeschlagen';
+      let message: string;
+      if (!this.isUsernameCorrect && !this.isPasswordCorrect) {
+        message = 'Benutzername und Kennwort wurden falsch eingegeben!';
+      } else if (!this.isUsernameCorrect && this.isPasswordCorrect) {
+        message = 'Der Benutzername existiert nicht!';
+      } else if (this.isUsernameCorrect && !this.isPasswordCorrect) {
+        message = 'Das eingegebene Kennwort ist ungültig!';
+      }
       this.isLoginFailed = true;
-    }
-
-  }
-
-  checkUsername():void {
-    if (this.username == 'user') {
-      this.isUsernameCorrect = true;
-    } else {
-      this.isUsernameCorrect = false;
+      this.loginMessage = message;
     }
   }
 
-  checkPassword():void {
-    if (this.password == 'pass') {
-      this.isPasswordCorrect = true;
+  checkUsername(username): boolean {
+    if (username === 'user') {
+      return true;
     } else {
-      this.isPasswordCorrect = false;
+      return false;
+    }
+  }
+
+  checkPassword(password): boolean {
+    if (password === 'pass') {
+      return true;
+    } else {
+      return false;
     }
   }
 
