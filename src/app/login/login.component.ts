@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {createBundleIndexHost} from '@angular/compiler-cli';
 
 @Component({
   selector: 'app-login',
