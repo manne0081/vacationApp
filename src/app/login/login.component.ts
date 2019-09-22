@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -6,19 +7,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  isSetCookie: boolean = this.cookieService.check('rmbLogin');
+  cookieValue = 'UNKNOWN';
+
   isUsernameCorrect = true;
   isPasswordCorrect = true;
   loginMessage: string;
   isLoginFailed: boolean;
-  isRememberLogin: boolean;
+  rememberLogin: boolean;
   loginMessageFailed: string;
   isVisible = false;
   username: string;
   password: string;
-  constructor() { }
+
+  //@ViewChild('username', ) test: ElementRef;
+  
+  constructor(private cookieService: CookieService) { }
 
   ngOnInit() {
     this.loginMessageFailed = 'Benutzername oder Kennwort wurde falsch eingegeben!';
+    if (this.isSetCookie) {
+      this.rememberLogin = true;
+      let value: string = this.cookieService.get('rmbLogin');
+      console.log(value);
+    }
+    //this.test.nativeElement.focus();                                      //set focus to input-field
+
   }
 
   onClickLogin(): void {
@@ -31,8 +45,12 @@ export class LoginComponent implements OnInit {
       this.loginMessage = '';
       this.isLoginFailed = false;
       console.log('System-Aktion > Anmeldung erfolgreich > Weiterleitung...');
-        if (this.isRememberLogin) {
+        if (this.rememberLogin) {
           console.log('System-Aktion > Set Cookie > remain signed in');
+          this.cookieService.set( 'rmbLogin', 'CookieValue', 1);
+          this.cookieValue = this.cookieService.get('Test');
+        } else {
+          this.cookieService.delete('rmbLogin');
         }
       } else {
       console.log('Login failed');
@@ -45,8 +63,8 @@ export class LoginComponent implements OnInit {
         message = 'Das eingegebene Kennwort ist ungültig!';
       }
       this.isLoginFailed = true;
-      this.loginMessage = message;
-    }
+      this.loginMessage = message;   
+    }    
   }
 
   checkUsername(username): boolean {
@@ -63,6 +81,10 @@ export class LoginComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  deleteCookie(): void {
+    this.cookieService.delete('rmbLogin');
   }
 
 }

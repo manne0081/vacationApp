@@ -10,9 +10,11 @@
   <div><input [(ngModel)]="password" [ngClass]="{'inputFailed': !isPasswordCorrect}" type="password" placeholder="Kennwort"></div>
   <button (click)="onClickLogin()" class="button login">Jetzt anmelden!</button>
 
-  <div><input [(ngModel)]="isRememberLogin" type="checkbox" name="rememberLogin" value="Angemeldet bleiben.">Angemeldet bleiben!</div>
+  <div><input [(ngModel)]="rememberLogin" type="checkbox" name="rememberLogin" value="Angemeldet bleiben.">Angemeldet bleiben!</div>
   <button class="button forgot-password">Kennwort vergessen?</button>
 
   <p *ngIf="loginFailedStatus">{{loginFailedMessage}}</p>
+
+  <div><button (click)="deleteCookie()">delete Cookie!</button></div>
 
 </div>
