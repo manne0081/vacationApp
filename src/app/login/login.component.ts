@@ -1,12 +1,16 @@
-import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import {logging} from 'selenium-webdriver';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
+  @ViewChild('inputUsername', {static: true}) inputUsername: ElementRef;
+  @ViewChild('inputPassword', {static: true}) inputPassword: ElementRef;
+
   isSetCookie: boolean = this.cookieService.check('rmbLogin');
   cookieValue = 'UNKNOWN';
 
@@ -20,19 +24,24 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
-  //@ViewChild('username', ) test: ElementRef;
-  
-  constructor(private cookieService: CookieService) { }
+
+
+  constructor(private cookieService: CookieService) {
+    console.log('inputUsernameValue ist: ' + this.inputUsername);
+  }
 
   ngOnInit() {
     this.loginMessageFailed = 'Benutzername oder Kennwort wurde falsch eingegeben!';
     if (this.isSetCookie) {
       this.rememberLogin = true;
-      let value: string = this.cookieService.get('rmbLogin');
-      console.log(value);
+      const value: string = this.cookieService.get('rmbLogin');
+      console.log('cookieValue ist: ' + value);
     }
-    //this.test.nativeElement.focus();                                      //set focus to input-field
+  }
 
+  ngAfterViewInit() {
+    console.log(this.inputUsername.nativeElement);
+    this.inputUsername.nativeElement.focus();                                      //set focus to input-field
   }
 
   onClickLogin(): void {
@@ -47,7 +56,7 @@ export class LoginComponent implements OnInit {
       console.log('System-Aktion > Anmeldung erfolgreich > Weiterleitung...');
         if (this.rememberLogin) {
           console.log('System-Aktion > Set Cookie > remain signed in');
-          this.cookieService.set( 'rmbLogin', 'CookieValue', 1);
+          this.cookieService.set( 'rmbLogin', 'CookieValue', 7);
           this.cookieValue = this.cookieService.get('Test');
         } else {
           this.cookieService.delete('rmbLogin');
@@ -57,14 +66,17 @@ export class LoginComponent implements OnInit {
       let message: string;
       if (!this.isUsernameCorrect && !this.isPasswordCorrect) {
         message = 'Benutzername und Kennwort wurden falsch eingegeben!';
+        this.inputUsername.nativeElement.focus();
       } else if (!this.isUsernameCorrect && this.isPasswordCorrect) {
         message = 'Der Benutzername existiert nicht!';
+        this.inputUsername.nativeElement.focus();
       } else if (this.isUsernameCorrect && !this.isPasswordCorrect) {
         message = 'Das eingegebene Kennwort ist ungültig!';
+        this.inputPassword.nativeElement.focus();
       }
       this.isLoginFailed = true;
-      this.loginMessage = message;   
-    }    
+      this.loginMessage = message;
+    }
   }
 
   checkUsername(username): boolean {

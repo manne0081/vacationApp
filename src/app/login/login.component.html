@@ -6,8 +6,8 @@
   <div><input [(ngModel)]="username" Class="input" type="text" placeholder="Benutzername"></div>
   <div><input [(ngModel)]="username" [ngClass]="'input'" type="text" placeholder="Benutzername"></div>
   -->
-  <div><input [(ngModel)]="username" [ngClass]="{'inputFailed': !isUsernameCorrect}" type="text" placeholder="Benutzername"></div>
-  <div><input [(ngModel)]="password" [ngClass]="{'inputFailed': !isPasswordCorrect}" type="password" placeholder="Kennwort"></div>
+  <div><input [(ngModel)]="username" [ngClass]="{'inputFailed': !isUsernameCorrect}" #inputUsername type="text" placeholder="Benutzername"></div>
+  <div><input [(ngModel)]="password" [ngClass]="{'inputFailed': !isPasswordCorrect}" #inputPassword type="password" placeholder="Kennwort"></div>
   <button (click)="onClickLogin()" class="button login">Jetzt anmelden!</button>
 
   <div><input [(ngModel)]="rememberLogin" type="checkbox" name="rememberLogin" value="Angemeldet bleiben.">Angemeldet bleiben!</div>
