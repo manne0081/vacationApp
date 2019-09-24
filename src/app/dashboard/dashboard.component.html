@@ -1,2 +1,9 @@
-<p>dashboard works!</p>
-<button (click)="onLogOut()">Logout...</button>
+<app-header></app-header>
+<h3>Dashboard...</h3>
+<div>
+    <div>
+        <button><a [routerLink]="['/login']">Urlaub beantragen</a></button>
+        <button><a [routerLink]="['/login']">Link 2</a></button>
+
+    </div>
+</div>

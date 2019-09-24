@@ -24,8 +24,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   username: string;
   password: string;
 
-
-
   constructor(private cookieService: CookieService, private router: Router) {}
 
   ngOnInit() {
@@ -34,6 +32,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.rememberLogin = true;
       // const value: string = this.cookieService.get('rmbLogin');
       // console.log('cookieValue ist: ' + value);
+      //this.router.navigate(['/dashboard']);
     }
   }
 
@@ -54,14 +53,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
       console.log('System-Aktion > Anmeldung erfolgreich > Weiterleitung...');
         if (this.rememberLogin) {
           console.log('System-Aktion > Set Cookie > remain signed in');
-          this.cookieService.set( 'rmbLogin', 'CookieValue', 7);
-          this.cookieValue = this.cookieService.get('Test');
+          this.cookieService.set( 'rmbLogin', 'CookieValue');
+          //this.cookieValue = this.cookieService.get('Test');
         } else {
           this.cookieService.delete('rmbLogin');
         }
         // Weiterleitung
         this.router.navigate(['/dashboard']);
-
+        
 
       } else {
       console.log('Login failed');
@@ -97,8 +96,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
+  
   deleteCookie(): void {
     this.cookieService.delete('rmbLogin');
   }
-
+  
 }
