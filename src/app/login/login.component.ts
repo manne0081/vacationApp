@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import {logging} from 'selenium-webdriver';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -26,21 +26,19 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
 
 
-  constructor(private cookieService: CookieService) {
-    console.log('inputUsernameValue ist: ' + this.inputUsername);
-  }
+  constructor(private cookieService: CookieService, private router: Router) {}
 
   ngOnInit() {
     this.loginMessageFailed = 'Benutzername oder Kennwort wurde falsch eingegeben!';
     if (this.isSetCookie) {
       this.rememberLogin = true;
-      const value: string = this.cookieService.get('rmbLogin');
-      console.log('cookieValue ist: ' + value);
+      // const value: string = this.cookieService.get('rmbLogin');
+      // console.log('cookieValue ist: ' + value);
     }
   }
 
   ngAfterViewInit() {
-    console.log(this.inputUsername.nativeElement);
+    // console.log(this.inputUsername.nativeElement);
     this.inputUsername.nativeElement.focus();                                      //set focus to input-field
   }
 
@@ -61,6 +59,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
         } else {
           this.cookieService.delete('rmbLogin');
         }
+        // Weiterleitung
+        this.router.navigate(['/dashboard']);
+
+
       } else {
       console.log('Login failed');
       let message: string;
