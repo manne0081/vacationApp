@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,14 +6,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  vacationSum: number;
+  vacation1: number;
+  vacation2: number;
+  vacation3: number;
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  onLogOut(): void {
-    this.router.navigate(['/login']);
+    this.vacationSum = 30;
+    this.vacation1 = 15;
+    this.vacation2 = 5;
+    this.vacation3 = 25;
   }
 
 }

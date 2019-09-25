@@ -13,14 +13,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   isSetCookie: boolean = this.cookieService.check('rmbLogin');
   cookieValue = 'UNKNOWN';
-
   isUsernameCorrect = true;
   isPasswordCorrect = true;
   loginMessage: string;
   isLoginFailed: boolean;
   rememberLogin: boolean;
+  rememberLoginMessage: string;
   loginMessageFailed: string;
-  isVisible = false;
   username: string;
   password: string;
 
@@ -30,40 +29,37 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.loginMessageFailed = 'Benutzername oder Kennwort wurde falsch eingegeben!';
     if (this.isSetCookie) {
       this.rememberLogin = true;
-      // const value: string = this.cookieService.get('rmbLogin');
-      // console.log('cookieValue ist: ' + value);
-      //this.router.navigate(['/dashboard']);
     }
+    this.rememberLoginMessage = 'Angemeldet bleiben!';
   }
 
   ngAfterViewInit() {
-    // console.log(this.inputUsername.nativeElement);
-    this.inputUsername.nativeElement.focus();                                      //set focus to input-field
+    this.inputUsername.nativeElement.focus();                                      // set focus to input-field
   }
 
   onClickLogin(): void {
-    console.clear();
+    // console.clear();
     this.isUsernameCorrect = this.checkUsername(this.username);
     this.isPasswordCorrect = this.checkPassword(this.password);
 
     if (this.isUsernameCorrect && this.isPasswordCorrect) {
-      console.log('Login success');
+      // console.log('Login success');
       this.loginMessage = '';
       this.isLoginFailed = false;
-      console.log('System-Aktion > Anmeldung erfolgreich > Weiterleitung...');
-        if (this.rememberLogin) {
-          console.log('System-Aktion > Set Cookie > remain signed in');
-          this.cookieService.set( 'rmbLogin', 'CookieValue');
-          //this.cookieValue = this.cookieService.get('Test');
-        } else {
-          this.cookieService.delete('rmbLogin');
-        }
-        // Weiterleitung
-        this.router.navigate(['/dashboard']);
-        
 
+      if (this.rememberLogin) {
+        this.cookieService.set( 'rmbLogin', 'Session', 7);
+        this.cookieValue = this.cookieService.get('rmbLogin');
       } else {
-      console.log('Login failed');
+        this.cookieService.set( 'login', 'Session2');
+        this.cookieService.delete('rmbLogin');
+      }
+
+      // Forward to Dashboard
+      this.router.navigate(['/dashboard']);
+      } else {
+
+      // console.log('Login failed');
       let message: string;
       if (!this.isUsernameCorrect && !this.isPasswordCorrect) {
         message = 'Benutzername und Kennwort wurden falsch eingegeben!';
@@ -96,9 +92,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
-  
-  deleteCookie(): void {
-    this.cookieService.delete('rmbLogin');
+  toggleRememberLogin() {
+    if (!this.rememberLogin) {
+      this.rememberLoginMessage = 'Für 7 Tage angemeldet bleiben!';
+    } else {
+      this.rememberLoginMessage = 'Angemeldet bleiben!';
+    }
   }
-  
+
 }

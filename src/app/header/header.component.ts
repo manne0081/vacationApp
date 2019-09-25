@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +9,14 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private cookieService: CookieService, private router: Router) { }
 
   ngOnInit() {
   }
 
   onLogOut(): void {
-    this.router.navigate(['/login']);
+    this.cookieService.delete('rmbLogin');
+    this.router.navigate(['/home']);
   }
 
 }
