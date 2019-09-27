@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { EmployeeService } from '../services/employee.service';
 
 @Component({
   selector: 'app-login',
@@ -23,9 +24,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
   username: string;
   password: string;
 
-  constructor(private cookieService: CookieService, private router: Router) {}
+  constructor(private cookieService: CookieService, private router: Router, private employeeService: EmployeeService) {}
 
   ngOnInit() {
+    console.log(this.employeeService);
     this.loginMessageFailed = 'Benutzername oder Kennwort wurde falsch eingegeben!';
     if (this.isSetCookie) {
       this.rememberLogin = true;
@@ -38,7 +40,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   onClickLogin(): void {
-    // console.clear();
     this.isUsernameCorrect = this.checkUsername(this.username);
     this.isPasswordCorrect = this.checkPassword(this.password);
 
@@ -77,10 +78,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   checkUsername(username): boolean {
-    if (username === 'user') {
-      return true;
-    } else {
-      return false;
+    // check username...
+    for (const entrie of this.employeeService.getData()) {
+      if (entrie === username) {
+        // check password...
+
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 

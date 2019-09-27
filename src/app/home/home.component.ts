@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     if (this.isSetCookie) {
       this.rememberLogin = true;
-      console.log('variable rememberLogin = true');
       this.router.navigate(['/dashboard']);
     }
   }
