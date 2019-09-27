@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../services/employee.service';
+import { TestService } from '../services/test.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +15,8 @@ export class DashboardComponent implements OnInit {
   vacation2: number;
   vacation3: number;
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService,
+              private testService: TestService) { }
 
   ngOnInit() {
     this.vacationSum = 30;
@@ -24,6 +27,9 @@ export class DashboardComponent implements OnInit {
 
   onClick(): void {
     console.log('dashboard onClick: ' + this.employeeService.getData());
+    console.log(';-) ' + this.testService.getTest());
   }
+
+  
 
 }

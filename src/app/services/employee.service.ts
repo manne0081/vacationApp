@@ -9,7 +9,6 @@ export class EmployeeService {
 
   addData(data: string) {
     this.employeeList.push(data);
-
   }
 
   getData() {

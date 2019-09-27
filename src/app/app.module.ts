@@ -11,6 +11,10 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 
 import { EmployeeService } from './services/employee.service';
+import { TestService } from './services/test.service';
+import { VacationComponent } from './vacation/vacation.component';
+import { SessionService } from './services/session.service';
+
 
 @NgModule({
   declarations: [
@@ -18,14 +22,15 @@ import { EmployeeService } from './services/employee.service';
     LoginComponent,
     DashboardComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    VacationComponent
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
   ],
-  providers: [ CookieService, EmployeeService ],
+  providers: [ CookieService, EmployeeService, TestService, SessionService ],
   bootstrap: [ AppComponent ],
 })
 export class AppModule {

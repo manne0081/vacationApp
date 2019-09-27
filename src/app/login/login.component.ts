@@ -1,7 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { Md5 } from 'ts-md5/dist/md5'
+
+import { CookieService } from 'ngx-cookie-service';
 import { EmployeeService } from '../services/employee.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +27,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
   username: string;
   password: string;
 
-  constructor(private cookieService: CookieService, private router: Router, private employeeService: EmployeeService) {}
+  constructor(private cookieService: CookieService,
+              private router: Router,
+              private employeeService: EmployeeService,
+              private sessionService: SessionService) {}
 
   ngOnInit() {
     console.log(this.employeeService);
@@ -48,16 +54,22 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.loginMessage = '';
       this.isLoginFailed = false;
 
+      let hash = Md5.hashStr(this.username);
+      console.log(hash);
+      let hashString = '' + hash;
+      console.log(hashString);
+      this.sessionService.setUser(this.username);
+                            
       if (this.rememberLogin) {
-        this.cookieService.set( 'rmbLogin', 'Session', 7);
+        this.cookieService.set( 'rmbLogin', this.username, 7);
         this.cookieValue = this.cookieService.get('rmbLogin');
       } else {
         this.cookieService.set( 'login', 'Session2');
         this.cookieService.delete('rmbLogin');
       }
-
-      // Forward to Dashboard
+      // Forward to Dashboard      
       this.router.navigate(['/dashboard']);
+
       } else {
 
       // console.log('Login failed');
