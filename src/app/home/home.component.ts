@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { TestService } from '../services/test.service';
 
 @Component({
   selector: 'app-home',
@@ -15,15 +14,13 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private cookieService: CookieService,
-    private router: Router,
-    private testService: TestService) { }
+    private router: Router) { }
 
   ngOnInit() {
     if (this.isSetCookie) {
       this.rememberLogin = true;
       this.router.navigate(['/dashboard']);
     }
-    this.testService.setTest('test... :-)');
   }
 
   onClickLogin(): void {

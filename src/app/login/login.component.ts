@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { Md5 } from 'ts-md5/dist/md5'
+// import { Md5 } from 'ts-md5/dist/md5'
 
 import { CookieService } from 'ngx-cookie-service';
 import { EmployeeService } from '../services/employee.service';
@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
               private sessionService: SessionService) {}
 
   ngOnInit() {
-    console.log(this.employeeService);
     this.loginMessageFailed = 'Benutzername oder Kennwort wurde falsch eingegeben!';
     if (this.isSetCookie) {
       this.rememberLogin = true;
@@ -53,25 +52,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
       // console.log('Login success');
       this.loginMessage = '';
       this.isLoginFailed = false;
-
-      let hash = Md5.hashStr(this.username);
-      console.log(hash);
-      let hashString = '' + hash;
-      console.log(hashString);
       this.sessionService.setUser(this.username);
-                            
+
       if (this.rememberLogin) {
         this.cookieService.set( 'rmbLogin', this.username, 7);
-        this.cookieValue = this.cookieService.get('rmbLogin');
       } else {
-        this.cookieService.set( 'login', 'Session2');
+        this.cookieService.set( 'login', 'Session');
         this.cookieService.delete('rmbLogin');
       }
-      // Forward to Dashboard      
+
+      // Forward to Dashboard
       this.router.navigate(['/dashboard']);
-
       } else {
-
       // console.log('Login failed');
       let message: string;
       if (!this.isUsernameCorrect && !this.isPasswordCorrect) {
@@ -90,16 +82,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   checkUsername(username): boolean {
-    // check username...
+    let bool = false;
     for (const entrie of this.employeeService.getData()) {
-      if (entrie === username) {
+      if (entrie === this.username) {
         // check password...
-
-        return true;
+        bool = true;
       } else {
-        return false;
       }
     }
+    return bool;
   }
 
   checkPassword(password): boolean {

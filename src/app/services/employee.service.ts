@@ -4,11 +4,13 @@ import { Injectable } from '@angular/core';
 
 export class EmployeeService {
   private employeeList: string[] = [];
+  private testList: Employee[] = [];
 
   constructor() { }
 
   addData(data: string) {
     this.employeeList.push(data);
+    // this.testList.push(new Employee('test', 'test'));
   }
 
   getData() {

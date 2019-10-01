@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
               private sessionService: SessionService) { }
 
   ngOnInit() {
-    this.currentUser = this.cookieService.get('rmbLogin');
+    this.currentUser = this.sessionService.getUser();
   }
 
   onLogOut(): void {
