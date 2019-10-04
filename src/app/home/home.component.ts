@@ -10,15 +10,12 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   isSetCookie: boolean = this.cookieService.check('rmbLogin');
-  rememberLogin: boolean;
 
   constructor(
-    private cookieService: CookieService,
-    private router: Router) { }
+    private cookieService: CookieService, private router: Router) { }
 
   ngOnInit() {
     if (this.isSetCookie) {
-      this.rememberLogin = true;
       this.router.navigate(['/dashboard']);
     }
   }

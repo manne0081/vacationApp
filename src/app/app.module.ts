@@ -13,7 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { EmployeeService } from './services/employee.service';
 import { VacationComponent } from './vacation/vacation.component';
 import { SessionService } from './services/session.service';
-
+import { LogService } from './services/log.service';
+import { VacationService } from './services/vacation.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { SessionService } from './services/session.service';
     routing,
     FormsModule,
   ],
-  providers: [ CookieService, EmployeeService, SessionService ],
+  providers: [ CookieService, EmployeeService, SessionService, LogService, VacationService ],
   bootstrap: [ AppComponent ],
 })
 export class AppModule {

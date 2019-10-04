@@ -11,7 +11,7 @@ export class SessionService {
 
   setUser(user: string): void {
     this.currentUser = user;
-    this.logService.log('session.service > setUser >> ' + this.currentUser);
+    // this.logService.log('session.service > setUser >> ' + this.currentUser);
   }
 
   getUser(): string {

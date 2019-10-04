@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { EmployeeService } from '../services/employee.service';
 import { SessionService } from '../services/session.service';
+import { LogService } from '../services/log.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('inputPassword', {static: true}) inputPassword: ElementRef;
 
   isSetCookie: boolean = this.cookieService.check('rmbLogin');
-  cookieValue = 'UNKNOWN';
   isUsernameCorrect = true;
   isPasswordCorrect = true;
   loginMessage: string;
@@ -27,10 +27,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   username: string;
   password: string;
 
-  constructor(private cookieService: CookieService,
-              private router: Router,
-              private employeeService: EmployeeService,
-              private sessionService: SessionService) {}
+  constructor(private cookieService: CookieService, private router: Router, private employeeService: EmployeeService,
+              private sessionService: SessionService, private logService: LogService) {}
 
   ngOnInit() {
     this.loginMessageFailed = 'Benutzername oder Kennwort wurde falsch eingegeben!';
@@ -49,7 +47,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.isPasswordCorrect = this.checkPassword(this.password);
 
     if (this.isUsernameCorrect && this.isPasswordCorrect) {
-      // console.log('Login success');
+      this.logService.log('username is: ' + this.username + ' >> password is: ' + this.password);
+
       this.loginMessage = '';
       this.isLoginFailed = false;
       this.sessionService.setUser(this.username);
@@ -83,9 +82,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   checkUsername(username): boolean {
     let bool = false;
-    for (const entrie of this.employeeService.getData()) {
-      if (entrie === this.username) {
-        // check password...
+    for (const entrie of this.employeeService.getEmployee()) {
+      if (entrie.username === username) {
         bool = true;
       } else {
       }
@@ -94,11 +92,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   checkPassword(password): boolean {
-    if (password === 'pass') {
-      return true;
-    } else {
-      return false;
+    let bool = false;
+    for (const entrie of this.employeeService.getEmployee()) {
+      if (entrie.password === password) {
+        bool = true;
+      } else {
+      }
     }
+    return bool;
   }
 
   toggleRememberLogin() {

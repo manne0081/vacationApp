@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../services/employee.service';
 import { SessionService } from '../services/session.service';
-import {CookieService} from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
+import { LogService } from '../services/log.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,9 +16,8 @@ export class DashboardComponent implements OnInit {
   vacation2: number;
   vacation3: number;
 
-  constructor(private cookieService: CookieService,
-              private sessionService: SessionService,
-              private employeeService: EmployeeService) { }
+  constructor(private cookieService: CookieService, private sessionService: SessionService, private employeeService: EmployeeService,
+              private logService: LogService) { }
 
   ngOnInit() {
     this.vacationSum = 30;
@@ -28,7 +28,10 @@ export class DashboardComponent implements OnInit {
   }
 
   onClick(): void {
-    console.log('dashboard onClick: ' + this.employeeService.getData());
+    this.logService.pushData('testString...');
+    console.log(this.employeeService.getEmployee());
   }
+
+
 
 }

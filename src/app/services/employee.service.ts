@@ -1,19 +1,13 @@
-import { Injectable } from '@angular/core';
-
-@Injectable()
+import { Employee } from '../entities/employee.model';
 
 export class EmployeeService {
-  private employeeList: string[] = [];
-  private testList: Employee[] = [];
+  private employeeList: Employee[] = [];
 
-  constructor() { }
-
-  addData(data: string) {
-    this.employeeList.push(data);
-    // this.testList.push(new Employee('test', 'test'));
+  addEmployee(username: string, password: string) {
+    this.employeeList.push(new Employee(username, password));
   }
 
-  getData() {
+  getEmployee() {
     return this.employeeList;
   }
 
