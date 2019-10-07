@@ -1,14 +1,12 @@
 import { Employee } from './employee.model';
 
 export class Vacation {
-  // private employee: Employee;
-  private empl: string;
+  private employee: Employee;
   private dateFrom: string;
   private dateTo: string;
 
-  constructor(empl: string, dateFrom: string, dateTo: string) {
-    // this.employee = employee;
-    this.empl = empl;
+  constructor(employee: Employee, dateFrom: string, dateTo: string) {
+    this.employee = employee;
     this.dateFrom = dateFrom;
     this.dateTo = dateTo;
   }

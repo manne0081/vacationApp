@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './services/employee.service';
 import { LogService } from './services/log.service';
 import { VacationService } from './services/vacation.service';
+import { SessionService } from './services/session.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +12,17 @@ import { VacationService } from './services/vacation.service';
   providers: [LogService]
 })
 export class AppComponent implements OnInit {
-  title = 'vacationApp';
 
-  constructor(private employeeService: EmployeeService, private vacationService: VacationService) {
+  constructor(private cookieService: CookieService, private sessionService: SessionService,
+              private employeeService: EmployeeService, private vacationService: VacationService) {
   }
 
   ngOnInit(): void {
-    this.employeeService.addEmployee('daniel', 'pass');
-    this.employeeService.addEmployee('dagobert', 'pass');
-    this.employeeService.addEmployee('donald', 'pass');
+    const cookieUser = this.cookieService.get('rmbLogin');
 
-    this.vacationService.addVacation('test', 'heute', 'morgen');
+    this.employeeService.addEmployeeOnInit();
+    this.sessionService.setUser(cookieUser);
+    this.vacationService.addVacationOnInit(this.sessionService.getUser());
 
   }
 }

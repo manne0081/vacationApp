@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { LogService } from './log.service';
+import { EmployeeService } from './employee.service';
+import { Employee } from '../entities/employee.model';
 
 @Injectable()
 
 export class SessionService {
-  private currentUser: string;
+  private currentUser: Employee;
 
-  constructor(private cookieService: CookieService, private logService: LogService) {}
+  constructor(private cookieService: CookieService, private logService: LogService,
+              private employeeService: EmployeeService) {}
 
   setUser(user: string): void {
-    this.currentUser = user;
-    // this.logService.log('session.service > setUser >> ' + this.currentUser);
+    for (const employee of this.employeeService.getEmployee()) {
+      if (employee.username === user) {
+        this.currentUser = employee;
+      }
+    }
   }
 
-  getUser(): string {
+  getUser(): Employee {
     return this.currentUser;
   }
 }

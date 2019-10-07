@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from '../services/session.service';
+import {VacationService} from '../services/vacation.service';
+import {SessionService} from '../services/session.service';
 
 @Component({
   selector: 'app-vacation',
@@ -8,10 +9,13 @@ import { SessionService } from '../services/session.service';
 })
 export class VacationComponent implements OnInit {
 
-  constructor(private sessionService: SessionService) { }
+  constructor(private vacationService: VacationService, private sessionService: SessionService) { }
 
   ngOnInit() {
-    console.log(this.sessionService.getUser());
+  }
+
+  onClickVacation() {
+    this.vacationService.addVacation(this.sessionService.getUser(), 'test', 'test');
   }
 
 }

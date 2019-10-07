@@ -1,8 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import { Router } from '@angular/router';
-// import { Md5 } from 'ts-md5/dist/md5'
-
 import { CookieService } from 'ngx-cookie-service';
+
 import { EmployeeService } from '../services/employee.service';
 import { SessionService } from '../services/session.service';
 import { LogService } from '../services/log.service';
@@ -47,16 +46,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.isPasswordCorrect = this.checkPassword(this.password);
 
     if (this.isUsernameCorrect && this.isPasswordCorrect) {
-      this.logService.log('username is: ' + this.username + ' >> password is: ' + this.password);
-
       this.loginMessage = '';
       this.isLoginFailed = false;
       this.sessionService.setUser(this.username);
-
       if (this.rememberLogin) {
         this.cookieService.set( 'rmbLogin', this.username, 7);
       } else {
-        this.cookieService.set( 'login', 'Session');
         this.cookieService.delete('rmbLogin');
       }
 

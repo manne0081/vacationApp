@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
               private logService: LogService) { }
 
   ngOnInit() {
-    this.currentUser = this.sessionService.getUser();
+    this.currentUser = this.sessionService.getUser().username;
     this.logService.pushedData.subscribe(
       (data: string) => this.value = data
     );

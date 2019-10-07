@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   isSetCookie: boolean = this.cookieService.check('rmbLogin');
 
-  constructor(
-    private cookieService: CookieService, private router: Router) { }
+  constructor(private cookieService: CookieService, private router: Router) { }
 
   ngOnInit() {
     if (this.isSetCookie) {
