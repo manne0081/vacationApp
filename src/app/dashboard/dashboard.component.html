@@ -9,15 +9,11 @@
     </div>
 </div>
 <hr>
+<h3>Urlaubsliste:</h3>
 <tr *ngFor="let vacation of vacationList">
-  <td>{{vacation}}</td>
+<td>Urlaubnehmer: {{ vacation.employee.username }} >> von: {{ vacation.dateFrom }} halber Tag: {{vacation.isHalfDayFrom}} >> bis: {{ vacation.dateTo }} halber Tag: {{vacation.isHalfDayTo}}</td>
 </tr>
-<!--
-<div>
-  <h4>Aktuelle Werte...</h4>
-  <p>Urlaubsanspruch für dieses Jahr: {{vacationSum}}</p>
-  <p>Aktuell beantragt: {{vacation1}}</p>
-  <p>Aktuell genehmigt: {{vacation2}}</p>
-  <p>Resturlaub: {{vacation3}}</p>
-</div>
--->
+
+
+
+

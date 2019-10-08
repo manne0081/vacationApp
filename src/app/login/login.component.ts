@@ -51,8 +51,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.sessionService.setUser(this.username);
       if (this.rememberLogin) {
         this.cookieService.set( 'rmbLogin', this.username, 7);
-      } else {
-        this.cookieService.delete('rmbLogin');
       }
 
       // Forward to Dashboard

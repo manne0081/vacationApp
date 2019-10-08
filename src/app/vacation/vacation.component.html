@@ -1,2 +1,12 @@
-<button [routerLink]="['/dashboard']">zurück...</button>
-<button (click)="onClickVacation()">1x Urlaub...</button>
+<div>
+  <button [routerLink]="['/dashboard']">zurück zum Dashboard</button>
+</div>
+<div>
+  <input type="date" [(ngModel)]="vacationFrom"><input type="checkbox" [(ngModel)]="isHalfDayFrom"> halber Tag
+</div>
+<div>
+  <input type="date" [(ngModel)]="vacationTo"><input type="checkbox" [(ngModel)]="isHalfDayTo"> halber Tag
+</div>
+<div>
+  <button (click)="onClickVacation()">Urlaub einreichen</button>
+</div>
