@@ -10,21 +10,23 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
-  providers: []
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
   vacationList: Vacation[];
   vacation: Vacation;
 
-  constructor(private cookieService: CookieService, private sessionService: SessionService, private employeeService: EmployeeService,
-              private logService: LogService, private vacationService: VacationService) { }
+  constructor(private cookieService: CookieService, private sessionService: SessionService,
+              private employeeService: EmployeeService, private logService: LogService,
+              private vacationService: VacationService, private routerService: Router) { }
 
   ngOnInit() {
-    // if (!this.cookieService.check('rmbLogin')) {
-    //   this.router.navigate(['/home']);
-    // }
-    this.vacationList = this.vacationService.getVacation();
+    if (!this.cookieService.check('rmbLogin') && !this.cookieService.check('session')) {
+      this.routerService.navigate(['./home']);
+    } else {
+      console.log(this.sessionService.getUser());
+      this.vacationList = this.vacationService.getVacation();
+    }
   }
 
   onClick(): void {
@@ -32,7 +34,5 @@ export class DashboardComponent implements OnInit {
     console.log(this.employeeService.getEmployee());
     console.log(this.vacationService.getVacation());
   }
-
-
 
 }

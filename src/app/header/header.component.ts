@@ -10,8 +10,8 @@ import { LogService } from '../services/log.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  currentUser: string;
   value = '';
+  private currentUser: string;
 
   constructor(private cookieService: CookieService, private router: Router, private sessionService: SessionService,
               private logService: LogService) { }
@@ -24,8 +24,11 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogOut(): void {
-    this.cookieService.delete('rmbLogin');
+    if (this.cookieService.check('rmbLogin')) {
+      this.cookieService.delete('rmbLogin');
+    } else if (this.cookieService.check('session')) {
+      this.cookieService.delete('session');
+    }
     this.router.navigate(['/home']);
   }
-
 }

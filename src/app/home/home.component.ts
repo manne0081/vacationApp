@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import {SessionService} from '../services/session.service';
 
 @Component({
   selector: 'app-home',
@@ -9,12 +10,13 @@ import { Router } from '@angular/router';
   providers: []
 })
 export class HomeComponent implements OnInit {
-  isSetCookie: boolean = this.cookieService.check('rmbLogin');
 
-  constructor(private cookieService: CookieService, private router: Router) { }
+  constructor(private router: Router, private cookieService: CookieService,
+              private sessionService: SessionService) { }
 
   ngOnInit() {
-    if (this.isSetCookie) {
+    if (this.isSetCookie()) {
+      this.sessionService.setUser(this.getCookieUser());
       this.router.navigate(['/dashboard']);
     }
   }
@@ -23,4 +25,19 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  isSetCookie(): boolean {
+    if (this.cookieService.check('rmbLogin') || this.cookieService.check('session')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getCookieUser(): string {
+    if (this.cookieService.check('rmbLogin')) {
+      return this.cookieService.get('rmbLogin');
+    } else if (this.cookieService.check('session')) {
+      return this.cookieService.get('session');
+    }
+  }
 }

@@ -18,12 +18,19 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const cookieUser = this.cookieService.get('rmbLogin');
-
+    if (this.cookieService.check('rmbLogin')) {
+      console.log('cookie "rmbLogin ist gesetzt...');
+      console.log(this.cookieService.get('rmbLogin'));
+      this.sessionService.setUser(this.cookieService.get('rmbLogin'));
+      console.log(this.sessionService.getUser());
+    } else if (this.cookieService.check('session')) {
+      console.log('cookie "session ist gesetzt...');
+      console.log(this.cookieService.get('session'));
+      this.sessionService.setUser(this.cookieService.get('session'));
+      console.log(this.sessionService.getUser());
+    }
     this.employeeService.addEmployeeOnInit();
-    this.sessionService.setUser(cookieUser);
     this.vacationService.addVacationOnInit(this.sessionService.getUser());
-
   }
 }
 
