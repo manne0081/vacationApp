@@ -7,16 +7,17 @@ export class VacationService {
   constructor() {}
 
   addVacationOnInit(employee: Employee) {
-    // this.addVacation(employee, 01.01.2019, false, 01.03.2019, false);
-    // this.addVacation(employee, 'hallo', 'welt');
-    // this.addVacation(employee, '123', '456');
+    // Achtung : Januar fängt bei 0 an...
+    // this.addVacation(employee, new Date(2019, 3, 7), new Date(2019, 3, 8), false, false);
+    // this.addVacation(employee, new Date(2019, 4, 1), new Date(2019, 4, 2), false, false);
+    // this.addVacation(employee, new Date(2019, 2, 7), new Date(2019, 2, 8), false, false);
   }
 
   addVacation(employee: Employee, dateFrom: Date, dateTo: Date, isHalfFrom: boolean, isHalfTo: boolean) {
     this.vacationList.push(new Vacation(employee, dateFrom, dateTo, isHalfFrom, isHalfTo));
   }
 
-  getVacation() {
+  getAllVacation() {
     return this.vacationList;
   }
 

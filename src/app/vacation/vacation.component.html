@@ -7,6 +7,21 @@
 <div>
   <input type="date" [(ngModel)]="vacationTo"><input type="checkbox" [(ngModel)]="isHalfDayTo"> halber Tag
 </div>
+
+<p style="margin-top: 20px">Arbeitstage für diesen Eintrag: {{ vacationDays }}</p>
+<p style="margin-bottom: 20px">Übrige Urlaubstage für dieses Jahr: {{ userVacationClaim }}</p>
+
 <div>
+  <button (click)="test()">test</button>
   <button (click)="onClickVacation()">Urlaub einreichen</button>
 </div>
+
+<!--RadioButton-Test-->
+<hr style="margin-top: 100px">
+<h2>{{title}}</h2>
+<label *ngFor="let item of radioItems">
+  <input type="radio" name="options" (click)="model.options = item" [checked]="item === model.options">
+  {{item}}
+</label>
+<p><button (click)="model.options = 'three'">set three</button>
+<p>{{debug}}

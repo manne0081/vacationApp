@@ -15,14 +15,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('inputUsername', {static: true}) inputUsername: ElementRef;
   @ViewChild('inputPassword', {static: true}) inputPassword: ElementRef;
 
-  isSetCookie: boolean = this.cookieService.check('rmbLogin');
   isUsernameCorrect = true;
   isPasswordCorrect = true;
-  loginMessage: string;
-  isLoginFailed: boolean;
-  rememberLogin: boolean;
-  rememberLoginMessage: string;
-  loginMessageFailed: string;
+  loginFailedMessage: string;
+  isRememberLogin: boolean;
+  rememberLoginMessage = 'Angemeldet bleiben!';
   username: string;
   password: string;
 
@@ -30,11 +27,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
               private sessionService: SessionService, private logService: LogService) {}
 
   ngOnInit() {
-    this.loginMessageFailed = 'Benutzername oder Kennwort wurde falsch eingegeben!';
-    if (this.isSetCookie) {
-      this.rememberLogin = true;
+    // load dashboard if is set the rmbLogin-cookie
+    if (this.cookieService.check('rmbLogin')) {
+      this.sessionService.setUser(this.cookieService.get('rmbLogin'));
+      this.router.navigate(['/dashboard']);
     }
-    this.rememberLoginMessage = 'Angemeldet bleiben!';
   }
 
   ngAfterViewInit() {
@@ -42,24 +39,24 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   onClickLogin(): void {
+    // check if username and password are correct
     this.isUsernameCorrect = this.checkUsername(this.username);
     this.isPasswordCorrect = this.checkPassword(this.password);
 
     if (this.isUsernameCorrect && this.isPasswordCorrect) {
-      this.loginMessage = '';
-      this.isLoginFailed = false;
+      // if both correct set session and load dashboard
+      this.loginFailedMessage = '';
       this.sessionService.setUser(this.username);
 
-      if (this.rememberLogin) {
+      if (this.isRememberLogin) {
+        // if checkbox rememberMe is true >> set cookie rmbLogin
         this.cookieService.set( 'rmbLogin', this.username, 7);
-      } else {
-        this.cookieService.set( 'session', this.username);
       }
-
-      // Forward to Dashboard
+      // forward to dashboard
       this.router.navigate(['/dashboard']);
+
       } else {
-      // console.log('Login failed');
+      // generate message if username or password aren't correct
       let message: string;
       if (!this.isUsernameCorrect && !this.isPasswordCorrect) {
         message = 'Benutzername und Kennwort wurden falsch eingegeben!';
@@ -71,17 +68,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
         message = 'Das eingegebene Kennwort ist ungültig!';
         this.inputPassword.nativeElement.focus();
       }
-      this.isLoginFailed = true;
-      this.loginMessage = message;
+      this.loginFailedMessage = message;
     }
   }
 
   checkUsername(username): boolean {
     let bool = false;
-    for (const entrie of this.employeeService.getEmployee()) {
+    for (const entrie of this.employeeService.getAllEmployee()) {
       if (entrie.username === username) {
         bool = true;
-      } else {
       }
     }
     return bool;
@@ -89,17 +84,16 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   checkPassword(password): boolean {
     let bool = false;
-    for (const entrie of this.employeeService.getEmployee()) {
+    for (const entrie of this.employeeService.getAllEmployee()) {
       if (entrie.password === password) {
         bool = true;
-      } else {
       }
     }
     return bool;
   }
 
   toggleRememberLogin() {
-    if (!this.rememberLogin) {
+    if (!this.isRememberLogin) {
       this.rememberLoginMessage = 'Für 7 Tage angemeldet bleiben!';
     } else {
       this.rememberLoginMessage = 'Angemeldet bleiben!';

@@ -5,13 +5,13 @@
         <button><a [routerLink]="['/vacation']">Urlaub beantragen!</a></button>
         <button><a [routerLink]="['/dashboard']">Link 2</a></button>
 
-        <button (click)="onClick()">Log Employee</button>
+        <button (click)="onClickLog()">Log for testing...</button>
     </div>
 </div>
 <hr>
 <h3>Urlaubsliste:</h3>
 <tr *ngFor="let vacation of vacationList">
-<td>Urlaubnehmer: {{ vacation.employee.username }} >> von: {{ vacation.dateFrom }} halber Tag: {{vacation.isHalfDayFrom}} >> bis: {{ vacation.dateTo }} halber Tag: {{vacation.isHalfDayTo}}</td>
+<td>Urlaubnehmer: {{ vacation.employee.username }} >> von: {{ vacation.dateFrom | date:'dd.MM.yyyy' }} halber Tag: {{vacation.isHalfDayFrom}} >> bis: {{ vacation.dateTo | date:'dd.MM.yyyy' }} halber Tag: {{vacation.isHalfDayTo}}</td>
 </tr>
 
 

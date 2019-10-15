@@ -16,7 +16,7 @@ export class LogService {
     this.pushedData.emit(value);
     let test = '';
 
-    for (const entrie of this.employeeService.getEmployee()) {
+    for (const entrie of this.employeeService.getAllEmployee()) {
       test += entrie.username + ' ';
     }
 

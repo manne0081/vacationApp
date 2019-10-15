@@ -15,29 +15,13 @@ export class HomeComponent implements OnInit {
               private sessionService: SessionService) { }
 
   ngOnInit() {
-    if (this.isSetCookie()) {
-      this.sessionService.setUser(this.getCookieUser());
+    if (this.cookieService.check('rmbLogin')) {
+      this.sessionService.setUser(this.cookieService.get('rmbLogin'));
       this.router.navigate(['/dashboard']);
     }
   }
 
   onClickLogin(): void {
     this.router.navigate(['/login']);
-  }
-
-  isSetCookie(): boolean {
-    if (this.cookieService.check('rmbLogin') || this.cookieService.check('session')) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  getCookieUser(): string {
-    if (this.cookieService.check('rmbLogin')) {
-      return this.cookieService.get('rmbLogin');
-    } else if (this.cookieService.check('session')) {
-      return this.cookieService.get('session');
-    }
   }
 }

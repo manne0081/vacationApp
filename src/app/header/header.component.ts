@@ -17,7 +17,9 @@ export class HeaderComponent implements OnInit {
               private logService: LogService) { }
 
   ngOnInit() {
-    this.currentUser = this.sessionService.getUser().username;
+    if (this.sessionService.isSetUser()) {
+      this.currentUser = this.sessionService.getUser().username;
+    }
     this.logService.pushedData.subscribe(
       (data: string) => this.value = data
     );
@@ -26,9 +28,8 @@ export class HeaderComponent implements OnInit {
   onLogOut(): void {
     if (this.cookieService.check('rmbLogin')) {
       this.cookieService.delete('rmbLogin');
-    } else if (this.cookieService.check('session')) {
-      this.cookieService.delete('session');
     }
+    this.sessionService.setUser('');
     this.router.navigate(['/home']);
   }
 }

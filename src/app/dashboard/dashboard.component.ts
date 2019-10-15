@@ -21,18 +21,17 @@ export class DashboardComponent implements OnInit {
               private vacationService: VacationService, private routerService: Router) { }
 
   ngOnInit() {
-    if (!this.cookieService.check('rmbLogin') && !this.cookieService.check('session')) {
+    if (!this.sessionService.isSetUser()) {
       this.routerService.navigate(['./home']);
     } else {
-      console.log(this.sessionService.getUser());
-      this.vacationList = this.vacationService.getVacation();
+      this.vacationService.addVacationOnInit(this.sessionService.getUser());
+      this.vacationList = this.vacationService.getAllVacation();
     }
   }
 
-  onClick(): void {
+  onClickLog(): void {
     this.logService.pushData('testString...');
-    console.log(this.employeeService.getEmployee());
-    console.log(this.vacationService.getVacation());
+    console.log(this.vacationService.getAllVacation());
   }
 
 }

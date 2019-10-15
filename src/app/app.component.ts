@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './services/employee.service';
 import { LogService } from './services/log.service';
-import { VacationService } from './services/vacation.service';
 import { SessionService } from './services/session.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,24 +13,15 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private cookieService: CookieService, private sessionService: SessionService,
-              private employeeService: EmployeeService, private vacationService: VacationService) {
+  constructor(private routerService: Router, private cookieService: CookieService, private sessionService: SessionService,
+              private employeeService: EmployeeService) {
   }
 
   ngOnInit(): void {
-    if (this.cookieService.check('rmbLogin')) {
-      console.log('cookie "rmbLogin ist gesetzt...');
-      console.log(this.cookieService.get('rmbLogin'));
-      this.sessionService.setUser(this.cookieService.get('rmbLogin'));
-      console.log(this.sessionService.getUser());
-    } else if (this.cookieService.check('session')) {
-      console.log('cookie "session ist gesetzt...');
-      console.log(this.cookieService.get('session'));
-      this.sessionService.setUser(this.cookieService.get('session'));
-      console.log(this.sessionService.getUser());
+    if (!this.sessionService.isSetUser()) {
+      this.routerService.navigate(['./home']);
     }
     this.employeeService.addEmployeeOnInit();
-    this.vacationService.addVacationOnInit(this.sessionService.getUser());
   }
 }
 

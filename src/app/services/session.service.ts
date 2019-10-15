@@ -8,17 +8,16 @@ import { Employee } from '../entities/employee.model';
 
 export class SessionService {
   private currentUser: Employee;
-  private isSetCurrentUser: boolean;
+  private isSetCurrentUser = false;
 
   constructor(private cookieService: CookieService, private logService: LogService,
               private employeeService: EmployeeService) {}
 
   setUser(user: string): void {
-    for (const employee of this.employeeService.getEmployee()) {
-      console.log('... test ...');
+    for (const employee of this.employeeService.getAllEmployee()) {
       if (employee.username === user) {
         this.currentUser = employee;
-        console.log(this.currentUser);
+        this.isSetCurrentUser = true;
       }
     }
   }
