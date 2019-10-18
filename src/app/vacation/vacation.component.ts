@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VacationService } from '../services/vacation.service';
 import { SessionService } from '../services/session.service';
 import { Router } from '@angular/router';
+import {isNull, isUndefined} from 'util';
 
 @Component({
   selector: 'app-vacation',
@@ -15,6 +16,7 @@ export class VacationComponent implements OnInit {
   isHalfDayTo = false;
   userVacationClaim;
   vacationDays: number;
+  restDays: number;
 
   // RadioButton-Test
   title = 'Angular 2 RC.1 - radio buttons';
@@ -27,45 +29,62 @@ export class VacationComponent implements OnInit {
     if (!this.sessionService.isSetUser()) {
       this.routerService.navigate(['./home']);
     }
-    // this.userVacationClaim = this.sessionService.getUser().vacationClaim;
   }
 
   onClickVacation() {
-    this.vacationService.addVacation(this.sessionService.getUser(), this.vacationFrom, this.vacationTo, this.isHalfDayFrom, this.isHalfDayTo);
+    this.vacationService.addVacation(this.sessionService.getUser(), this.vacationFrom.getFullYear(), this.vacationFrom, this.vacationTo, this.isHalfDayFrom, this.isHalfDayTo);
+    this.sessionService.getUser().vacationClaim -= this.vacationDays;
+    this.userVacationClaim -= this.vacationDays;
   }
 
   test(): void {
     const dateFrom = new Date(this.vacationFrom);
     const dateTo = new Date(this.vacationTo);
-    const milsec = dateTo.getTime() - dateFrom.getTime();
-    const sec = milsec / 1000;
-    const min = sec / 60;
-    const std = min / 60;
-    const day = std / 24;
 
-    console.log(this.vacationFrom + ' -> this.vacationFrom');
-    console.log(this.vacationTo + ' -> this.vacationTo');
-    // console.log(dateFrom);
-    // console.log(dateTo);
-
-    let current_datetime = new Date();
-    let formatted_date = current_datetime.getDate() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getFullYear();
-    console.log(formatted_date);
-
-    if (this.vacationFrom === undefined && this.vacationTo === undefined) {
-      console.log('Beides ist undefined...');
-      console.log(this.vacationFrom);
-      this.vacationDays = day;
-    } else if (this.vacationFrom === undefined) {
-      console.log('dateFrom ist undefined');
-      this.vacationDays = 1;
-    } else if (this.vacationTo === undefined) {
-      console.log('dateTo ist undefined');
-
-    } else {
-
+    if (dateFrom < new Date() || dateTo < new Date()) {
+      console.log('Der ausgewählte Zeitraum liegt in der Vergangenheit');
+      return;
     }
 
+    if (this.vacationFrom && this.vacationTo) {
+      // the vacationTime have to be calculated
+      const milsec = dateTo.getTime() - dateFrom.getTime();
+      const sec = milsec / 1000;
+      const min = sec / 60;
+      const std = min / 60;
+      const day = std / 24;
+      let halfDay: number;
+      if (this.isHalfDayFrom && this.isHalfDayTo) {
+        halfDay = 1;
+      } else if (this.isHalfDayFrom) {
+        halfDay = 0.5;
+      } else if (this.isHalfDayTo) {
+        halfDay = 0.5;
+      } else {
+        halfDay = 0;
+      }
+      this.vacationDays = day + 1 - halfDay;
+    } else if (this.vacationFrom && !this.vacationTo) {
+      // it has to be taken one day
+      if (!this.isHalfDayFrom) {
+        this.vacationDays = 1;
+      } else {
+        this.vacationDays = 0.5;
+      }
+    } else if (isUndefined(this.vacationFrom) && isUndefined(this.vacationTo)) {
+      // it has nothing to work for
+      this.vacationDays = 0;
+      this.restDays = 0;
+    } else if (!this.vacationFrom && this.vacationTo) {
+      // it has nothing to work for
+      this.vacationDays = 0;
+      this.restDays = 0;
+    } else if (!this.vacationFrom && !this.vacationTo) {
+      // it has nothing to work for
+      this.vacationDays = 0;
+      this.restDays = 0;
+    }
+    this.restDays = this.userVacationClaim - this.vacationDays;
   }
 
   // RadioButton-Test

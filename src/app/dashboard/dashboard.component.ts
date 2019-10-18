@@ -14,10 +14,8 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   vacationList: Vacation[];
-  vacation: Vacation;
 
-  constructor(private cookieService: CookieService, private sessionService: SessionService,
-              private employeeService: EmployeeService, private logService: LogService,
+  constructor(private sessionService: SessionService, private logService: LogService,
               private vacationService: VacationService, private routerService: Router) { }
 
   ngOnInit() {

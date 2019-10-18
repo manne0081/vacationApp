@@ -15,6 +15,7 @@ import { VacationComponent } from './vacation/vacation.component';
 import { SessionService } from './services/session.service';
 import { LogService } from './services/log.service';
 import { VacationService } from './services/vacation.service';
+import { VacationClaimComponent } from './vacation-claim/vacation-claim.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { VacationService } from './services/vacation.service';
     DashboardComponent,
     HeaderComponent,
     HomeComponent,
-    VacationComponent
+    VacationComponent,
+    VacationClaimComponent
   ],
   imports: [
     BrowserModule,

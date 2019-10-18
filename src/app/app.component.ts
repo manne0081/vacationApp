@@ -4,6 +4,7 @@ import { LogService } from './services/log.service';
 import { SessionService } from './services/session.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { VacationService } from './services/vacation.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   constructor(private routerService: Router, private cookieService: CookieService, private sessionService: SessionService,
-              private employeeService: EmployeeService) {
+              private employeeService: EmployeeService, private vacationService: VacationService) {
   }
 
   ngOnInit(): void {

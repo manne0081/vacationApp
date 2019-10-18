@@ -2,17 +2,17 @@
   <button [routerLink]="['/dashboard']">zurück zum Dashboard</button>
 </div>
 <div>
-  <input type="date" [(ngModel)]="vacationFrom"><input type="checkbox" [(ngModel)]="isHalfDayFrom"> halber Tag
+  <input type="date" [(ngModel)]="vacationFrom" (change)="test()"><input type="checkbox" [(ngModel)]="isHalfDayFrom" (change)="test()"> halber Tag
 </div>
 <div>
-  <input type="date" [(ngModel)]="vacationTo"><input type="checkbox" [(ngModel)]="isHalfDayTo"> halber Tag
+  <input type="date" [(ngModel)]="vacationTo" (change)="test()"><input type="checkbox" [(ngModel)]="isHalfDayTo" (change)="test()"> halber Tag
 </div>
 
 <p style="margin-top: 20px">Arbeitstage für diesen Eintrag: {{ vacationDays }}</p>
-<p style="margin-bottom: 20px">Übrige Urlaubstage für dieses Jahr: {{ userVacationClaim }}</p>
+<p>Übrige Urlaubstage für dieses Jahr: {{ userVacationClaim }}</p>
+<p style="margin-bottom: 20px">Rest Urlaubstage für dieses Jahr: {{ restDays }}</p>
 
 <div>
-  <button (click)="test()">test</button>
   <button (click)="onClickVacation()">Urlaub einreichen</button>
 </div>
 
