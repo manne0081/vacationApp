@@ -1,22 +1,25 @@
 <button [routerLink]="['/dashboard']">Zurück zum Dashboard</button>
 
 <hr>
-<input>
+<input value=" {{ currentUser.username }}">
 <input [(ngModel)]="year" type="text">
 <input [(ngModel)]="vacationClaim" type="text">
 
 <button (click)="test()">Eintrag speichern...</button>
 
 <hr>
-<h3>Urlaubsliste:</h3>
-<tr *ngFor="let employee of employeeList">
+<h3>Settings - Urlaubsanspruch:</h3>
+<ul *ngFor="let employee of employeeList">
   <div class="background">
     <div>{{ employee.username }}
-      <tr *ngFor="let vacation of vacationClaimList">
-        {{ vacation.year }}
-      </tr>
+      <ul *ngFor="let vacation of vacationClaimList">
+        <li *ngIf="vacation.employee.username == 'daniel'">
+          test {{ vacation.year }}
+        </li>
+      </ul>
     </div>
   </div>
-</tr>
+</ul>
 
-
+<hr>
+<li *ngFor="let item of items; index as i; trackBy: trackByFn">...</li>

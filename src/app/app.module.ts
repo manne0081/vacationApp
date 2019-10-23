@@ -16,6 +16,10 @@ import { SessionService } from './services/session.service';
 import { LogService } from './services/log.service';
 import { VacationService } from './services/vacation.service';
 import { VacationClaimComponent } from './vacation-claim/vacation-claim.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { DepartmentComponent } from './department/department.component';
+import {DepartmentService} from './services/department.service';
+import { EmployeeAddComponent } from './employee/employee-add/employee-add.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +29,17 @@ import { VacationClaimComponent } from './vacation-claim/vacation-claim.componen
     HeaderComponent,
     HomeComponent,
     VacationComponent,
-    VacationClaimComponent
+    VacationClaimComponent,
+    EmployeeComponent,
+    DepartmentComponent,
+    EmployeeAddComponent
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
   ],
-  providers: [ CookieService, EmployeeService, SessionService, LogService, VacationService ],
+  providers: [ CookieService, EmployeeService, SessionService, LogService, VacationService, DepartmentService ],
   bootstrap: [ AppComponent ],
 })
 export class AppModule {

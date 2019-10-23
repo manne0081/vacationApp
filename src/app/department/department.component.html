@@ -1,0 +1,18 @@
+<div>
+  <button [routerLink]="['/dashboard']">zurück zum Dashboard</button>
+</div>
+<h2>Abteilungs-Übersicht</h2>
+<hr>
+<div>
+  <button>xxx</button>
+  <button>xxx</button>
+</div>
+<hr>
+<div style="background-color: lightblue; height: 50px"></div>
+<div *ngFor="let department of departmentList">
+  <div style="height: 50px; padding:5px; border: 1px solid lightseagreen">
+    {{ department.name }} - Beschreibung: {{ department.description }}
+  </div>
+</div>
+<hr>
+Anzahl: {{ departmentList.length }}

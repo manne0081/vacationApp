@@ -5,6 +5,7 @@ import { SessionService } from './services/session.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { VacationService } from './services/vacation.service';
+import {DepartmentService} from './services/department.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ import { VacationService } from './services/vacation.service';
 export class AppComponent implements OnInit {
 
   constructor(private routerService: Router, private cookieService: CookieService, private sessionService: SessionService,
-              private employeeService: EmployeeService, private vacationService: VacationService) {
+              private employeeService: EmployeeService, private departmentService: DepartmentService) {
   }
 
   ngOnInit(): void {
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
       this.routerService.navigate(['./home']);
     }
     this.employeeService.addEmployeeOnInit();
+    this.departmentService.addDepartmentOnInit();
   }
 }
 

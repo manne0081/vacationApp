@@ -11,6 +11,7 @@ import { VacationService } from '../services/vacation.service';
   styleUrls: ['./vacation-claim.component.css']
 })
 export class VacationClaimComponent implements OnInit {
+  currentUser: Employee;
   private year: number;
   private vacationClaim: number;
   private vacationClaimList: VacationClaim[] = [];
@@ -21,10 +22,12 @@ export class VacationClaimComponent implements OnInit {
 
   ngOnInit() {
     this.employeeList = this.employeeService.getAllEmployee();
+    this.currentUser = this.sessionService.getUser();
   }
 
   test(): void {
     this.vacationService.addVacationClaim(this.sessionService.getUser(), this.year, this.vacationClaim);
     this.vacationClaimList = this.vacationService.getAllVacationClaim();
+    console.log(this.vacationClaimList);
   }
 }

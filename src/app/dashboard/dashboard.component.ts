@@ -6,6 +6,7 @@ import { LogService } from '../services/log.service';
 import { VacationService } from '../services/vacation.service';
 import { Vacation } from '../entities/vacation.model';
 import { Router } from '@angular/router';
+import {DepartmentService} from '../services/department.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,8 @@ export class DashboardComponent implements OnInit {
   vacationList: Vacation[];
 
   constructor(private sessionService: SessionService, private logService: LogService,
-              private vacationService: VacationService, private routerService: Router) { }
+              private vacationService: VacationService, private routerService: Router,
+              private departmentSercie: DepartmentService) { }
 
   ngOnInit() {
     if (!this.sessionService.isSetUser()) {
@@ -30,6 +32,7 @@ export class DashboardComponent implements OnInit {
   onClickLog(): void {
     this.logService.pushData('testString...');
     console.log(this.vacationService.getAllVacation());
+    console.log(this.departmentSercie.getAllDepartments());
   }
 
 }
