@@ -1,0 +1,18 @@
+<div>
+  <button [routerLink]="['/dashboard']">zurück zum Dashboard</button>
+</div>
+<h2>Mitarbeiter-Übersicht</h2>
+<hr>
+<div>
+  <button [routerLink]="['/employee-add']">Mitarbeiter anlegen</button>
+  <button>Abteilungsleiter Konfiguration</button>
+</div>
+<hr>
+<div style="background-color: lightblue; height: 50px"></div>
+<div *ngFor="let employee of employeeList">
+  <div style="height: 50px; padding:5px; border: 1px solid lightseagreen">
+    {{ employee.nameI }} {{ employee.nameII }} - Urlaubsanspruch: {{ employee.vacationClaim }}
+  </div>
+</div>
+<hr>
+Anzahl: {{ employeeList.length }}
