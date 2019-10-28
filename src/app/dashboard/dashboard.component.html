@@ -1,21 +1,40 @@
 <app-header></app-header>
-<h3>Dashboard...</h3>
-<div>
-    <div>
-        <button><a [routerLink]="['/employee']">Mitarbeiter Einstellungen</a></button>
-        <button><a [routerLink]="['/department']">Abteilungs Einstellungen</a></button>
-        <button><a [routerLink]="['/vacation']">Urlaub beantragen!</a></button>
-        <button><a [routerLink]="['/vacationClaim']">Urlaubsanspruch</a></button>
 
-        <button (click)="onClickLog()">Log for testing...</button>
-    </div>
+<div style="display: flex; flex-direction: row; box-sizing: border-box">
+  <div style="width: 300px; margin: 8px 8px">
+    <app-navigation-admin *ngIf="isCurrentUserAdmin"></app-navigation-admin>
+    <app-navigation *ngIf="!isCurrentUserAdmin"></app-navigation>
+  </div>
+  <div style="flex: 1; box-sizing: border-box; margin: 8px 8px">
+    test
+  </div>
 </div>
+
 <hr>
-<h3>Urlaubsliste:</h3>
-<tr *ngFor="let vacation of vacationList">
-<td>Urlaubnehmer: {{ vacation.employee.username }} >> von: {{ vacation.dateFrom | date:'dd.MM.yyyy' }} halber Tag: {{vacation.isHalfDayFrom}} >> bis: {{ vacation.dateTo | date:'dd.MM.yyyy' }} halber Tag: {{vacation.isHalfDayTo}}</td>
-</tr>
+<div style="margin: 8px 8px">
+  <h3>Urlaubsliste:</h3>
+  <tr *ngFor="let vacation of vacationList">
+    <td>Urlaubnehmer: {{ vacation.employee.username }} >> von: {{ vacation.dateFrom | date:'dd.MM.yyyy' }} halber Tag: {{vacation.isHalfDayFrom}} >> bis: {{ vacation.dateTo | date:'dd.MM.yyyy' }} halber Tag: {{vacation.isHalfDayTo}}</td>
+  </tr>
+</div>
 
+<!--<hr>-->
+<!--box-sizing-test-->
+<!--<div style="width: 200px; height: 100px; background-color: lime; border: 10px solid black; margin: 0 10px; padding: 0 10px; box-sizing: content-box">-->
+  <!--content-box <br>-->
+  <!--width: 200px <br>-->
+  <!--height: 100px-->
+<!--</div>-->
+<!--<div style="width: 200px; height: 100px; background-color: lime; margin: 0 30px;">-->
+  <!--test-->
+<!--</div>-->
 
-
-
+<!--<br>-->
+<!--<div style="width: 200px; height: 100px; background-color: lime; border: 10px solid black; margin: 0 30px; padding: 0 10px; box-sizing: border-box">-->
+  <!--border-box <br>-->
+  <!--width: 200px <br>-->
+  <!--height: 100px-->
+<!--</div>-->
+<!--<div style="width: 200px; height: 100px; background-color: lime; margin: 0 30px;">-->
+  <!--test-->
+<!--</div>-->

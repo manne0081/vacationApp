@@ -1,4 +1,11 @@
-<div class="background"><button (click)="onLogOut()">Logout...</button>
-<h3>Herzlich Willkommen, {{currentUser}}</h3>
-{{value}}
+<div style="display: flex; flex-direction: row; height: 48px; border-bottom: 1px solid black; align-items: center" class="background">
+  <div style="flex: 1; margin-left: 8px;">
+    <button (click)="onLogOut()">Logout...</button>
+  </div>
+  <div style="flex: 5; margin-left: 8px;">
+    <h3>Herzlich Willkommen, {{currentUser}}</h3>
+  </div>
+  <div style="flex: 3; justify-content: right">
+    {{value}}
+  </div>
 </div>

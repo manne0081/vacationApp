@@ -15,5 +15,4 @@ export class DepartmentComponent implements OnInit {
   ngOnInit() {
     this.departmentList = this.departmentService.getAllDepartments();
   }
-
 }

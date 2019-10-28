@@ -13,13 +13,12 @@ export class LogService {
 
   pushData(value: string) {
     this.log(value);
-    this.pushedData.emit(value);
-    let test = '';
+    // this.pushedData.emit(value);
 
+    let test = '';
     for (const entrie of this.employeeService.getAllEmployee()) {
       test += entrie.username + ' ';
     }
-
     this.pushedData.emit(test);
   }
 }

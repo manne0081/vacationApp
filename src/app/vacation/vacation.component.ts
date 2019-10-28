@@ -33,7 +33,6 @@ export class VacationComponent implements OnInit {
 
   onClickVacation() {
     this.vacationService.addVacation(this.sessionService.getUser(), this.vacationFrom.getFullYear(), this.vacationFrom, this.vacationTo, this.isHalfDayFrom, this.isHalfDayTo);
-    this.sessionService.getUser().vacationClaim -= this.vacationDays;
     this.userVacationClaim -= this.vacationDays;
   }
 

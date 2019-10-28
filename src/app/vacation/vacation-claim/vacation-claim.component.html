@@ -1,0 +1,24 @@
+<button [routerLink]="['/dashboard']">Zurück zum Dashboard</button>
+
+<hr>
+<!--<input type="text" placeholder="Mitarbeiter wählen (funktioniert nicht)">-->
+<select [(ngModel)]="employee">
+  <option *ngFor="let employee of employeeList" [ngValue]="employee">{{employee.nameI}} {{employee.nameII}}</option>
+</select>
+<input [(ngModel)]="year" type="text" placeholder="Jahr">
+<input [(ngModel)]="vacationClaim" type="text" placeholder="Tage">
+<button (click)="onClickSave()">Eintrag speichern...</button>
+
+<hr>
+<h3>Settings - Urlaubsanspruch:</h3>
+<ul *ngFor="let employee of employeeList">
+  <div class="background">
+    <div>{{ employee.username }}
+      <ul *ngFor="let vacation of vacationClaimList">
+        <li *ngIf="vacation.employee.username == 'daniel'">
+          test {{ vacation.year }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</ul>

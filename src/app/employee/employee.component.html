@@ -1,18 +1,30 @@
-<div>
-  <button [routerLink]="['/dashboard']">zurück zum Dashboard</button>
-</div>
-<h2>Mitarbeiter-Übersicht</h2>
-<hr>
-<div>
-  <button [routerLink]="['/employee-add']">Mitarbeiter anlegen</button>
-  <button>Abteilungsleiter Konfiguration</button>
-</div>
-<hr>
-<div style="background-color: lightblue; height: 50px"></div>
-<div *ngFor="let employee of employeeList">
-  <div style="height: 50px; padding:5px; border: 1px solid lightseagreen">
-    {{ employee.nameI }} {{ employee.nameII }} - Urlaubsanspruch: {{ employee.vacationClaim }}
+<!--Area => Header-->
+<div class="header">
+  <div>
+    <button [routerLink]="['/dashboard']">zurück zum Dashboard</button>
   </div>
 </div>
-<hr>
-Anzahl: {{ employeeList.length }}
+
+<!--Area => employeeOverview-->
+<div style="margin-left: 18px;">
+  <h2>Mitarbeiter-Übersicht</h2>
+  <div style="margin: 10px 0">
+    <button style="width: 180px" (click)="showAddEmployee = !showAddEmployee">{{showAddEmployee ? 'Schließen' : 'Mitarbeiter erstellen'}}</button>
+    <button style="width: 220px" >Abteilungsleiter Konfiguration</button>
+  </div>
+</div>
+
+<!--Area => addEmployee / only visible to add employee-->
+<app-employee-add *ngIf="showAddEmployee"></app-employee-add>
+
+<!--Area => employeeOverviewList-->
+<hr *ngIf="!showAddEmployee">
+<div style="border-top: 1px solid lightseagreen">
+  <div *ngFor="let employee of employeeList" (click)="onClickItem()">
+    <div style="height: 50px; padding: 5px 10px; border-bottom: 1px solid lightseagreen; border-left: 8px solid lightseagreen">
+      <input type="checkbox">
+      {{ employee.employeeNumber }} - {{ employee.nameI }} {{ employee.nameII }}
+    </div>
+  </div>
+</div>
+<p style="margin: 5px 18px; color: lightseagreen; font-size: 12px">Anzahl: {{ employeeList.length }}</p>

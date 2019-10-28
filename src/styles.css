@@ -4,3 +4,30 @@
   margin: 0;
   padding: 0;
 }
+
+hr {
+  margin: 10px 0;
+}
+
+button {
+  padding: 4px 16px;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.header {
+  background: lightseagreen;
+  height: 48px;
+  border-bottom: 1px solid black;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.header button {
+  margin-left: 8px;
+}

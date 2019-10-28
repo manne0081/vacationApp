@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {EmployeeService} from '../../services/employee.service';
-import {isUndefined} from 'util';
+import { EmployeeService } from '../../services/employee.service';
 
 @Component({
   selector: 'app-employee-add',
@@ -8,33 +7,25 @@ import {isUndefined} from 'util';
   styleUrls: ['./employee-add.component.css']
 })
 export class EmployeeAddComponent implements OnInit {
-  private nameI: string;
-  private nameII: string;
-  private username: string;
-  private password: string;
-  private vacationClaim: number;
+  private nameI;
+  private nameII;
+  private username;
+  private password;
 
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
+    this.password = 'test1234';
   }
 
   onClickSave(): void {
-    let bool: boolean;
-
-    if (isUndefined(this.nameI)) {
-      bool = true;
-    }
-    if (isUndefined(this.nameII)) {
-      bool = true;
-    }
-
-    if (!bool) {
-    this.employeeService.addEmployee(this.nameI, this.nameII, this.username, this.password, this.vacationClaim);
-    console.log(this.nameI + ' ' + this.nameII + ' ' + this.username + ' ' + this.password + ' ' + this.vacationClaim);
-    } else {
-      console.log('fehler...');
-    }
+    // let n = this.employeeService.getAllEmployee().pop().employeeNumber;  //Entfernt den letzten Eintrag im Array...
+    let n = this.employeeService.getAllEmployee()[this.employeeService.getAllEmployee().length - 1].employeeNumber;
+    n++;
+    this.employeeService.addEmployee(this.nameI, this.nameII, this.username, this.password, n);
+    this.nameI = '';
+    this.nameII = '';
+    this.username = '';
+    this.password = '';
   }
-
 }

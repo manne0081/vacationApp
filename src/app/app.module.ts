@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { routing } from './app.routing';
 import { CookieService } from 'ngx-cookie-service';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -15,11 +14,13 @@ import { VacationComponent } from './vacation/vacation.component';
 import { SessionService } from './services/session.service';
 import { LogService } from './services/log.service';
 import { VacationService } from './services/vacation.service';
-import { VacationClaimComponent } from './vacation-claim/vacation-claim.component';
+import { VacationClaimComponent } from './vacation/vacation-claim/vacation-claim.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { DepartmentComponent } from './department/department.component';
-import {DepartmentService} from './services/department.service';
+import { DepartmentService } from './services/department.service';
 import { EmployeeAddComponent } from './employee/employee-add/employee-add.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationAdminComponent } from './navigation/navigation-admin/navigation-admin.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { EmployeeAddComponent } from './employee/employee-add/employee-add.compo
     VacationClaimComponent,
     EmployeeComponent,
     DepartmentComponent,
-    EmployeeAddComponent
+    EmployeeAddComponent,
+    NavigationComponent,
+    NavigationAdminComponent,
   ],
   imports: [
     BrowserModule,
