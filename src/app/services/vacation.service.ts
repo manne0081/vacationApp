@@ -19,8 +19,8 @@ export class VacationService {
     // this.vacationClaimList.push(new VacationClaim(employee, 2020, 30));
   }
 
-  addVacation(employee: Employee, year: number, dateFrom: Date, dateTo: Date, isHalfFrom: boolean, isHalfTo: boolean) {
-    this.vacationList.push(new Vacation(employee, year, dateFrom, dateTo, isHalfFrom, isHalfTo));
+  addVacation(employee: Employee, dateFrom: Date, dateTo: Date, isHalfFrom: boolean, isHalfTo: boolean, vacationDays: number) {
+    this.vacationList.push(new Vacation(employee, dateFrom, dateTo, isHalfFrom, isHalfTo, vacationDays));
   }
 
   getAllVacation() {

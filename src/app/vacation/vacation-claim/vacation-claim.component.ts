@@ -11,12 +11,11 @@ import { VacationService } from '../../services/vacation.service';
   styleUrls: ['./vacation-claim.component.css']
 })
 export class VacationClaimComponent implements OnInit {
-  currentUser: Employee;
+  private currentUser: Employee;
   private year: number;
   private vacationClaim: number;
   private vacationClaimList = this.vacationService.getAllVacationClaim();
   private employeeList: Employee[] = [];
-  private employee: Employee;
 
   constructor(private employeeService: EmployeeService, private vacationService: VacationService,
               private sessionService: SessionService) { }
@@ -24,11 +23,10 @@ export class VacationClaimComponent implements OnInit {
   ngOnInit() {
     this.employeeList = this.employeeService.getAllEmployee();
     this.currentUser = this.sessionService.getUser();
-    this.employee = this.currentUser;
   }
 
   onClickSave(): void {
-    console.log(this.employee);
-    this.vacationService.addVacationClaim(this.employee, this.year, this.vacationClaim);
+    this.vacationService.addVacationClaim(this.currentUser, this.year, this.vacationClaim);
+    console.log(this.vacationService.getAllVacationClaim());
   }
 }

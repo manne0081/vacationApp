@@ -1,8 +1,14 @@
-<button [routerLink]="['/dashboard']">Zurück zum Dashboard</button>
+<!--Area => Header-->
+<div class="header">
+  <div>
+    <button [routerLink]="['/dashboard']">zurück zum Dashboard</button>
+  </div>
+</div>
 
+<!--Area => vacationClaimOverview-->
 <hr>
 <!--<input type="text" placeholder="Mitarbeiter wählen (funktioniert nicht)">-->
-<select [(ngModel)]="employee">
+<select [(ngModel)]="currentUser">
   <option *ngFor="let employee of employeeList" [ngValue]="employee">{{employee.nameI}} {{employee.nameII}}</option>
 </select>
 <input [(ngModel)]="year" type="text" placeholder="Jahr">
@@ -15,7 +21,7 @@
   <div class="background">
     <div>{{ employee.username }}
       <ul *ngFor="let vacation of vacationClaimList">
-        <li *ngIf="vacation.employee.username == 'daniel'">
+        <li *ngIf="vacation.employee.username == 'dagobert'">
           test {{ vacation.year }}
         </li>
       </ul>
