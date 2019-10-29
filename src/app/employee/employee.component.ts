@@ -9,8 +9,10 @@ import { Employee} from '../entities/employee.model';
 })
 export class EmployeeComponent implements OnInit, AfterViewInit {
   private showAddEmployee = false;
+  private showAddConfig = false;
 
   private employeeList: Employee[] = this.employeeService.getAllEmployee();
+  private headOfDepartmentSettings: string[] = ['Abteilungsleiter', 'Stellvertreter'];
 
   constructor(private employeeService: EmployeeService) { }
 
@@ -22,5 +24,10 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
 
   onClickItem(): void {
     console.log('Item clicked...');
+  }
+
+  onClickSetEmployeeToFirstHead() {
+    console.log('onClickSetEmployeeToFirstHead...');
+    console.log(this.headOfDepartmentSettings);
   }
 }
