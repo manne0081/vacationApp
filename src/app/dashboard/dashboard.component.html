@@ -27,6 +27,19 @@
   </div>
 </div>
 
+
+<input type="text" [value]="test">
+{{ test }}
+<button (click)="onClickTest($event)">click Test</button>
+<br>
+<input type="text" (keyup)="onKeyUp($event)" placeholder="keyup">
+<br>
+<input #box3 type="text" (keyup.enter)="update(box3.value)" placeholder="keyup.enter">
+<br>
+<input #box4 type="text" (blur)="update(box4.value)" placeholder="blur > bei verlassen (auch ohne Änderung)">
+<p>{{ values }}</p>
+
+
 <!--<hr>-->
 <!--box-sizing-test-->
 <!--<div style="width: 200px; height: 100px; background-color: lime; border: 10px solid black; margin: 0 10px; padding: 0 10px; box-sizing: content-box">-->
