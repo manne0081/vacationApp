@@ -26,10 +26,10 @@
     <select style="padding: 4px 16px;" [(ngModel)]="currentUser">
       <option *ngFor="let employee of employeeList" [ngValue]="employee">{{employee.nameI}} {{employee.nameII}}</option>
     </select>
-    <select style="padding: 4px 16px;" [(ngModel)]="currentUser">
+    <select style="padding: 4px 16px;" [(ngModel)]="headOfDepartment">
       <option *ngFor="let entrie of headOfDepartmentSettings" [ngValue]="entrie">{{ entrie }}</option>
     </select>
-    <button (click)="onClickSetEmployeeToFirstHead()">Markierte Mitarbeiter zuweisen</button>
+    <button (click)="onClickSetEmployeeToFirstHead($event)">Markierte Mitarbeiter zuweisen</button>
   </div>
 </div>
 

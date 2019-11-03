@@ -8,26 +8,33 @@ import { Employee} from '../entities/employee.model';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit, AfterViewInit {
-  private showAddEmployee = false;
-  private showAddConfig = false;
+    private showAddEmployee = false;
+    private showAddConfig = false;
 
-  private employeeList: Employee[] = this.employeeService.getAllEmployee();
-  private headOfDepartmentSettings: string[] = ['Abteilungsleiter', 'Stellvertreter'];
+    private currentUser: Employee;
+    private headOfDepartment: string;
 
-  constructor(private employeeService: EmployeeService) { }
+    private employeeList: Employee[] = this.employeeService.getAllEmployee();
+    private headOfDepartmentSettings: string[] = ['Abteilungsleiter', 'Stellvertreter'];
 
-  ngOnInit() {
-  }
+    constructor(private employeeService: EmployeeService) { }
 
-  ngAfterViewInit() {
-  }
+    ngOnInit() {
 
-  onClickItem(): void {
-    console.log('Item clicked...');
-  }
+    }
 
-  onClickSetEmployeeToFirstHead() {
-    console.log('onClickSetEmployeeToFirstHead...');
-    console.log(this.headOfDepartmentSettings);
-  }
+    ngAfterViewInit() {
+
+    }
+
+    onClickItem(): void {
+        console.log('Item clicked...');
+    }
+
+    onClickSetEmployeeToFirstHead(event: Event) {
+        console.log('onClickSetEmployeeToFirstHead...');
+        console.log(this.currentUser);
+        console.log(this.headOfDepartment);
+        console.log(event);
+    }
 }
