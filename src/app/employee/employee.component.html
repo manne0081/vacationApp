@@ -1,46 +1,51 @@
 <!--Area => Header-->
 <div class="header">
-  <div>
-    <button [routerLink]="['/dashboard']">zurück zum Dashboard</button>
-  </div>
+    <div>
+        <button [routerLink]="['/dashboard']">zurück zum Dashboard</button>
+    </div>
 </div>
 
 <!--Area => employeeOverview-->
 <div style="margin-left: 18px;">
-  <h2>Mitarbeiter-Übersicht</h2>
-  <div style="margin: 10px 0">
-    <button style="width: 180px" (click)="showAddEmployee = !showAddEmployee">{{showAddEmployee ? 'Schließen' : 'Mitarbeiter erstellen'}}</button>
-    <button style="width: 220px" (click)="showDepConfig = !showDepConfig">{{showDepConfig ? 'Schließen' : 'Abteilungsleiter Konfiguration'}}</button>
-  </div>
+    <h2>Mitarbeiter-Übersicht</h2>
+    <div style="margin: 10px 0">
+        <button style="width: 180px" (click)="showAddEmployee = !showAddEmployee">{{showAddEmployee ? 'Schließen' : 'Mitarbeiter erstellen'}}
+        </button>
+        <button style="width: 220px" (click)="showDepConfig = !showDepConfig">{{showDepConfig ? 'Schließen' : 'Abteilungsleiter Konfiguration'}}
+        </button>
+    </div>
 </div>
 
 <!--Area => addEmployee / only visible to add employee-->
 <app-employee-add *ngIf="showAddEmployee"></app-employee-add>
 
 <!--Area => Department Configuration / only visible when depConfig=true -->
-<div *ngIf="showDepConfig" style="background-color: lightseagreen; border-top: 1px solid black; border-bottom: 1px solid black; margin-bottom: 10px; padding: 10px 18px">
-  <div>
-    <p style="color: white; margin-bottom: 5px;">Abteilungsleiter Konfiguration</p>
-  </div>
-  <div>
-    <select style="padding: 4px 16px;" [(ngModel)]="currentUser">
-      <option *ngFor="let employee of employeeList" [ngValue]="employee">{{employee.nameI}} {{employee.nameII}}</option>
-    </select>
-    <select style="padding: 4px 16px;" [(ngModel)]="headOfDepartment">
-      <option *ngFor="let entrie of headOfDepartmentSettings" [ngValue]="entrie">{{ entrie }}</option>
-    </select>
-    <button (click)="onClickSetEmployeeToFirstHead($event)">Markierte Mitarbeiter zuweisen</button>
-  </div>
+<div *ngIf="showDepConfig"
+     style="background-color: lightseagreen; border-top: 1px solid black; border-bottom: 1px solid black; margin-bottom: 10px; padding: 10px 18px">
+    <div>
+        <p style="color: white; margin-bottom: 5px;">Abteilungsleiter Konfiguration</p>
+    </div>
+    <div>
+        <select style="padding: 4px 16px;" [(ngModel)]="currentUser">
+            <option *ngFor="let employee of employeeList" [ngValue]="employee">{{employee.nameI}} {{employee.nameII}}
+            </option>
+        </select>
+        <select style="padding: 4px 16px;" [(ngModel)]="headOfDepartment">
+            <option *ngFor="let entrie of headOfDepartmentSettings" [ngValue]="entrie">{{ entrie }}</option>
+        </select>
+        <button (click)="onClickSetEmployeeToFirstHead($event)">Markierte Mitarbeiter zuweisen</button>
+    </div>
 </div>
 
 <!--Area => employeeOverviewList-->
 <hr *ngIf="!showAddEmployee">
 <div style="border-top: 1px solid lightseagreen">
-  <div *ngFor="let employee of employeeList" (click)="onClickItem()">
-    <div style="height: 50px; padding: 5px 10px; border-bottom: 1px solid lightseagreen; border-left: 8px solid lightseagreen">
-      <input type="checkbox">
-      {{ employee.employeeNumber }} - {{ employee.nameI }} {{ employee.nameII }}
+    <div *ngFor="let employee of employeeList" (click)="onClickItem()">
+        <div
+            style="height: 50px; padding: 5px 10px; border-bottom: 1px solid lightseagreen; border-left: 8px solid lightseagreen">
+            <input type="checkbox">
+            {{ employee.employeeNumber }} - {{ employee.nameI }} {{ employee.nameII }}
+        </div>
     </div>
-  </div>
 </div>
 <p style="margin: 5px 18px; color: lightseagreen; font-size: 12px">Anzahl: {{ employeeList.length }}</p>

@@ -1,11 +1,11 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { EmployeeService } from '../services/employee.service';
-import { Employee} from '../entities/employee.model';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {EmployeeService} from '../services/employee.service';
+import {Employee} from '../entities/employee.model';
 
 @Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+    selector: 'app-employee',
+    templateUrl: './employee.component.html',
+    styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit, AfterViewInit {
     private showAddEmployee = false;
@@ -17,7 +17,8 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     private employeeList: Employee[] = this.employeeService.getAllEmployee();
     private headOfDepartmentSettings: string[] = ['Abteilungsleiter', 'Stellvertreter'];
 
-    constructor(private employeeService: EmployeeService) { }
+    constructor(private employeeService: EmployeeService) {
+    }
 
     ngOnInit() {
 
