@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { SessionService } from '../services/session.service';
 import { LogService } from '../services/log.service';
 import { VacationService } from '../services/vacation.service';
-import { Vacation } from '../entities/vacation.model';
+import { Vacation } from '../vacation/vacation.model';
 import { Router } from '@angular/router';
 
 @Component({

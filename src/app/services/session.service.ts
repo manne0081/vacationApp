@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { LogService } from './log.service';
 import { EmployeeService } from './employee.service';
-import { Employee } from '../entities/employee.model';
+import { Employee } from '../employee/employee.model';
 
 @Injectable()
 

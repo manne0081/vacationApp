@@ -9,7 +9,9 @@
 <div style="margin-left: 18px;">
     <h2>Mitarbeiter-Übersicht</h2>
     <div style="margin: 10px 0">
-        <button style="width: 180px" (click)="showAddEmployee = !showAddEmployee">{{showAddEmployee ? 'Schließen' : 'Mitarbeiter erstellen'}}
+        <!--<button style="width: 180px" (click)="showAddEmployee = !showAddEmployee">{{showAddEmployee ? 'Schließen' : 'Mitarbeiter erstellen'}}-->
+        <!--</button>-->
+        <button style="width: 180px" [routerLink]="['/employee-add']">Mitarbeiter erstellen
         </button>
         <button style="width: 220px" (click)="showDepConfig = !showDepConfig">{{showDepConfig ? 'Schließen' : 'Abteilungsleiter Konfiguration'}}
         </button>
@@ -17,7 +19,7 @@
 </div>
 
 <!--Area => addEmployee / only visible to add employee-->
-<app-employee-add *ngIf="showAddEmployee"></app-employee-add>
+<!--<app-employee-add *ngIf="showAddEmployee"></app-employee-add>-->
 
 <!--Area => Department Configuration / only visible when depConfig=true -->
 <div *ngIf="showDepConfig"

@@ -1,4 +1,4 @@
-import { Employee } from '../entities/employee.model';
+import { Employee } from '../employee/employee.model';
 
 export class EmployeeService {
   private employeeList: Employee[] = [];

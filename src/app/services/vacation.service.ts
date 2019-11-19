@@ -1,6 +1,6 @@
-import { Vacation } from '../entities/vacation.model';
-import { VacationClaim } from '../entities/vacationClaim.model';
-import { Employee } from '../entities/employee.model';
+import { Vacation } from '../vacation/vacation.model';
+import { VacationClaim } from '../vacation/vacation-claim/vacationClaim.model';
+import { Employee } from '../employee/employee.model';
 
 export class VacationService {
   private vacationList: Vacation[] = [];

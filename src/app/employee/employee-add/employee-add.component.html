@@ -1,12 +1,21 @@
-<div style="background-color: lightseagreen; border-top: 1px solid black; border-bottom: 1px solid black; margin-bottom: 10px; padding: 10px 18px">
-  <div>
-    <p style="color: white; margin-bottom: 5px;">Mitarbeiter hinzufügen</p>
-  </div>
-  <div>
-    <input style="height: 22px;" type="text" placeholder="NameI" [(ngModel)]="nameI">
-    <input style="height: 22px;"  type="text" placeholder="NameII" [(ngModel)]="nameII">
-    <input style="height: 22px;"  type="text" placeholder="Benutzername" [(ngModel)]="username">
-    <input style="height: 22px;"  type="text" placeholder="Kennwort" #inputPassword [(ngModel)]="password">
-    <button style="height: 24px; width: 100px; margin-left: 10px"  type="submit" (click)="onClickSave()">Speichern</button>
-  </div>
+<!--Area => Header-->
+<div class="header">
+    <div>
+        <button [routerLink]="['/employee']">Mitarbeiter-Übersicht</button>
+    </div>
+</div>
+
+<div style="margin-left: 12px;">
+    <h1>Benutzerkonto erstellen</h1>
+    <hr>
+    <h3 style="margin-bottom: 16px;">Benutzerkonto</h3>
+    <div style="display: flex; flex-direction: row">
+        <label style="width: 150px;">Benutzername</label><input [(ngModel)]="nameI" type="text" style="margin-right: 32px;">
+        <label style="width: 120px;">Kennwort</label><input [(ngModel)]="nameII" type="text" style="margin-right: 32px;">
+    </div>
+    <div style="display: flex; flex-direction: row">
+        <label style="width: 150px;">Vorname</label><input [(ngModel)]="username" type="text" style="margin-right: 32px;">
+        <label style="width: 120px;">Nachname</label><input [(ngModel)]="password" type="text" style="margin-right: 32px;">
+    </div>
+    <button (click)="onClickSave()">Speichern</button>
 </div>

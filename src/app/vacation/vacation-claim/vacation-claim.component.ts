@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { VacationClaim} from '../../entities/vacationClaim.model';
+import { VacationClaim} from './vacationClaim.model';
 import { EmployeeService} from '../../services/employee.service';
-import { Employee } from '../../entities/employee.model';
+import { Employee } from '../../employee/employee.model';
 import { SessionService } from '../../services/session.service';
 import { VacationService } from '../../services/vacation.service';
 
