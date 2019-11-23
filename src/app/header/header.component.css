@@ -1,3 +1,10 @@
-.background {
-  background-color: lightseagreen;
+.header-background {
+    display: flex;
+    flex-direction: row;
+    height: 52px;
+    border-bottom: 1px solid #505050;
+    align-items: center;
+    background-color: #6E625A;
+    font-size: 16px;
+    color: #fff;
 }

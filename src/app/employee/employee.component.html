@@ -1,53 +1,35 @@
-<!--Area => Header-->
-<div class="header">
-    <div>
-        <button [routerLink]="['/dashboard']">zurück zum Dashboard</button>
-    </div>
-</div>
+<div class="background">
+    <!--Area => Header-->
+    <app-header></app-header>
 
-<!--Area => employeeOverview-->
-<div style="margin-left: 18px;">
-    <h2>Mitarbeiter-Übersicht</h2>
-    <div style="margin: 10px 0">
-        <!--<button style="width: 180px" (click)="showAddEmployee = !showAddEmployee">{{showAddEmployee ? 'Schließen' : 'Mitarbeiter erstellen'}}-->
-        <!--</button>-->
-        <button style="width: 180px" [routerLink]="['/employee-add']">Mitarbeiter erstellen
-        </button>
-        <button style="width: 220px" (click)="showDepConfig = !showDepConfig">{{showDepConfig ? 'Schließen' : 'Abteilungsleiter Konfiguration'}}
-        </button>
-    </div>
-</div>
+    <router-outlet></router-outlet>
 
-<!--Area => addEmployee / only visible to add employee-->
-<!--<app-employee-add *ngIf="showAddEmployee"></app-employee-add>-->
+    <div style="display: flex; flex-direction: row; box-sizing: border-box; height: 100%">
+        <div style="width: 240px; margin: 8px 8px">
+            <app-navigation-admin *ngIf="isCurrentUserAdmin"></app-navigation-admin>
+            <app-navigation *ngIf="!isCurrentUserAdmin"></app-navigation>
+        </div>
 
-<!--Area => Department Configuration / only visible when depConfig=true -->
-<div *ngIf="showDepConfig"
-     style="background-color: lightseagreen; border-top: 1px solid black; border-bottom: 1px solid black; margin-bottom: 10px; padding: 10px 18px">
-    <div>
-        <p style="color: white; margin-bottom: 5px;">Abteilungsleiter Konfiguration</p>
-    </div>
-    <div>
-        <select style="padding: 4px 16px;" [(ngModel)]="currentUser">
-            <option *ngFor="let employee of employeeList" [ngValue]="employee">{{employee.nameI}} {{employee.nameII}}
-            </option>
-        </select>
-        <select style="padding: 4px 16px;" [(ngModel)]="headOfDepartment">
-            <option *ngFor="let entrie of headOfDepartmentSettings" [ngValue]="entrie">{{ entrie }}</option>
-        </select>
-        <button (click)="onClickSetEmployeeToFirstHead($event)">Markierte Mitarbeiter zuweisen</button>
-    </div>
-</div>
-
-<!--Area => employeeOverviewList-->
-<hr *ngIf="!showAddEmployee">
-<div style="border-top: 1px solid lightseagreen">
-    <div *ngFor="let employee of employeeList" (click)="onClickItem()">
-        <div
-            style="height: 50px; padding: 5px 10px; border-bottom: 1px solid lightseagreen; border-left: 8px solid lightseagreen">
-            <input type="checkbox">
-            {{ employee.employeeNumber }} - {{ employee.nameI }} {{ employee.nameII }}
+        <!--Area => employeeOverview-->
+        <div style="margin-left: 18px; width: 100%; margin-right: 9px; margin-top: 9px; padding: 8px 12px; background-color: rgba(253,253,253,0.8)">
+            <div style="display: flex; flex-direction: row; position: relative">
+                <h2 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Mitarbeiter-Übersicht</h2>
+                <div style="margin: 10px 0">
+                    <button style="width: 180px" [routerLink]="['/employee-add']">Mitarbeiter erstellen</button>
+                </div>
+            </div>
+            <!--Area => employeeOverviewList-->
+            <hr *ngIf="!showAddEmployee">
+            <div style="border-top: 1px solid #505050; width: 100%;">
+                <div *ngFor="let employee of employeeList" (click)="onClickItem()">
+                    <div
+                        style="height: 50px; padding: 5px 10px; border-bottom: 1px solid #505050; border-left: 8px solid #505050">
+                        <input type="checkbox">
+                        {{ employee.employeeNumber }} - {{ employee.nameI }} {{ employee.nameII }}
+                    </div>
+                </div>
+            </div>
+            <p style="margin: 5px 18px; color: #202020; font-size: 12px">Anzahl: {{ employeeList.length }}</p>
         </div>
     </div>
 </div>
-<p style="margin: 5px 18px; color: lightseagreen; font-size: 12px">Anzahl: {{ employeeList.length }}</p>

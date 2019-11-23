@@ -1,14 +1,51 @@
-<div>
+<!--<div style="background: url(../../assets/img/login-bgr-2-1920-1080.png);height: 100%; background-repeat: none; position: relative; ">-->
+<div class="background">
 
-  <div class="heading"><label>Bitte anmelden...</label></div>
-  <div class="heading"><label>{{loginFailedMessage}}</label></div>
-  <div><input [(ngModel)]="username" [ngClass]="{'inputFailed': !isUsernameCorrect}" #inputUsername type="text" placeholder="Benutzername"></div>
-  <div><input [(ngModel)]="password" [ngClass]="{'inputFailed': !isPasswordCorrect}" #inputPassword type="password" placeholder="Kennwort"></div>
-  <button (click)="onClickLogin()" class="button login">Jetzt anmelden!</button>
+    <!--LEFT AREA-->
+    <div class="container">
+        <div class="box box1">
+            <!--icon-->
+            <div class="icon">
+                <img src="../../assets/img/user_group.png" alt="">
+            </div>
+            <!--input username-->
+            <div><input class="input username" type="text" placeholder="Benutzername"
+                        [(ngModel)]="username" [ngClass]="{'inputFailed': !isUsernameCorrect}" #inputUsername>
+            </div>
+            <!--input password-->
+            <div><input class="input password" type="password" placeholder="Kennwort"
+                        [(ngModel)]="password" [ngClass]="{'inputFailed': !isPasswordCorrect}" #inputPassword>
+            </div>
+            <!--input rememberLogin and forgotPassword-->
+            <div class="additionalData" style="display: flex; flex-direction: row">
+                <div class="rememberLogin" style="flex: 3"><input [(ngModel)]="isRememberLogin" (click)="toggleRememberLogin()" type="checkbox"
+                            name="rememberLogin" value="Angemeldet bleiben.">{{rememberLoginMessage}}
+                </div>
+                <div class="forgotPassword" style="flex: 3">
+                    <button class="forgotPasswordButton">Kennwort vergessen?</button>
+                </div>
+            </div>
+            <!--button submit-->
+            <button class="input login-button" (click)="onClickLogin()">Jetzt anmelden!</button>
 
-  <div><input [(ngModel)]="isRememberLogin" (click)="toggleRememberLogin()" type="checkbox" name="rememberLogin" value="Angemeldet bleiben.">{{rememberLoginMessage}}</div>
-  <button class="button forgot-password">Kennwort vergessen?</button>
+            <!--failedMessage-->
+            <!--<p *ngIf="loginFailedStatus">{{loginFailedMessage}}</p>-->
+            <div class="loginMessageContainer" *ngIf="loginFailedStatus" >
+                <img class="exclamation" src="../../assets/img/achtung2.png" alt="">
+                <div class="loginMessageContainerRight">
+                    <p class="z1">Anmeldung fehlgeschlagen!</p>
+                    <p class="z2">{{loginFailedMessage}}</p>
+                </div>
+            </div>
 
-  <p *ngIf="loginFailedStatus">{{loginFailedMessage}}</p>
+        </div>
 
+        <!--RIGHT AREA-->
+        <div class="box box2">
+            <h3 style="font-family: 'Segoe Print'; font-size: 32px;">Worktime-Balance</h3>
+            <h4 style="font-family: 'Arial'; font-size: 12px; padding-left: 2px;">Firmenname v.0.0.0</h4>
+        </div>
+
+    </div>
 </div>
+

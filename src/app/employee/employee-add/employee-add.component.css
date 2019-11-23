@@ -1,0 +1,72 @@
+.container-content {
+    margin-left: 18px;
+    width: 100%;
+    margin-right: 9px;
+    margin-top: 9px;
+    padding: 8px 12px;
+    background-color: rgba(253,253,253,0.8);
+}
+
+.container-contentHeader {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.container-contentHeader h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.labelMain {
+    color: #505050;
+    font-size: 14px;
+    padding-top: 3px;
+}
+
+.labelSecondColumn {
+    position: absolute;
+    left: 632px;
+}
+
+.labelThirdColumn {
+    position: absolute;
+    left: 933px;
+}
+
+.label4thColumn {
+    position: absolute;
+    left: 1229px;
+}
+
+.inputMain {
+    outline: none;
+    border: none;
+    border-right: 1px solid #909090;
+    border-bottom: 1px solid #909090;
+    padding: 4px 6px;
+    margin-right: 48px;
+}
+
+.inputFirstColumn {
+    position: absolute;
+    left: 403px;
+}
+
+.inputSecondColumn {
+    position: absolute;
+    left: 712px;
+}
+
+.inputThirdColumn {
+    position: absolute;
+    left: 1000px;
+}
+
+.input4thColumn {
+    position: absolute;
+    left: 1261px;
+}
+

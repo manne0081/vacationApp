@@ -1,6 +1,7 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {EmployeeService} from '../services/employee.service';
 import {Employee} from './employee.model';
+import {SessionService} from '../services/session.service';
 
 @Component({
     selector: 'app-employee',
@@ -10,18 +11,20 @@ import {Employee} from './employee.model';
 export class EmployeeComponent implements OnInit, AfterViewInit {
     private showAddEmployee = false;
     private showAddConfig = false;
-
+    private isCurrentUserAdmin = false;
     private currentUser: Employee;
     private headOfDepartment: string;
 
     private employeeList: Employee[] = this.employeeService.getAllEmployee();
     private headOfDepartmentSettings: string[] = ['Abteilungsleiter', 'Stellvertreter'];
 
-    constructor(private employeeService: EmployeeService) {
+    constructor(private employeeService: EmployeeService, private sessionService: SessionService) {
     }
 
     ngOnInit() {
-
+        if (this.sessionService.getUser().username === 'dagobert') {
+            this.isCurrentUserAdmin = true;
+        }
     }
 
     ngAfterViewInit() {

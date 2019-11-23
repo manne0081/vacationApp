@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     if (this.sessionService.isSetUser()) {
-      this.currentUser = this.sessionService.getUser().username;
+      this.currentUser = this.sessionService.getUser().nameI + ' ' + this.sessionService.getUser().nameII;
     }
     this.logService.pushedData.subscribe(
       (data: string) => this.value = data

@@ -1,21 +1,73 @@
-<!--Area => Header-->
-<div class="header">
-    <div>
-        <button [routerLink]="['/employee']">Mitarbeiter-Übersicht</button>
+<div class="background">
+    <!--Area => Header-->
+    <app-header></app-header>
+
+    <router-outlet></router-outlet>
+
+    <div style="display: flex; flex-direction: row; box-sizing: border-box; height: 100%">
+        <div style="width: 240px; margin: 8px 8px">
+            <app-navigation-admin *ngIf="isCurrentUserAdmin"></app-navigation-admin>
+            <app-navigation *ngIf="!isCurrentUserAdmin"></app-navigation>
+        </div>
+
+        <!--Area => employeeOverview-->
+        <div class="container-content">
+            <div class="container-contentHeader">
+                <h2>Benutzerkonto erstellen</h2>
+                <div style="margin: 10px 0">
+                    <button style="width: 180px" [routerLink]="['/employee']">zurück...</button>
+                </div>
+                <div style="padding-top: 16px; margin-left: 16px;"
+                     *ngIf="successfullyCreated">Erfolgreich erstellt!</div>
+            </div>
+            <hr>
+
+            <h4 style="margin-bottom: 12px;">Kontodaten</h4>
+            <div style="display: flex; flex-direction: row; margin-bottom: 24px; margin-left: 32px;">
+                <label class="labelMain">Benutzername</label>
+                <input class="inputMain inputFirstColumn" [(ngModel)]="username" type="text">
+                <label class="labelMain labelSecondColumn">Kennwort</label>
+                <input class="inputMain inputSecondColumn" [(ngModel)]="password" type="text">
+            </div>
+
+            <h4 style="margin-bottom: 12px;">Persönliche Daten</h4>
+            <div style="display: flex; flex-direction: row; margin-bottom: 9px; margin-left: 32px;">
+                <label class="labelMain">Vorname</label>
+                <input class="inputMain inputFirstColumn" [(ngModel)]="nameI" type="text">
+                <label class="labelMain labelSecondColumn">Nachname</label>
+                <input class="inputMain inputSecondColumn" [(ngModel)]="nameII" type="text">
+            </div>
+            <div style="display: flex; flex-direction: row; margin-bottom: 9px; margin-left: 32px;">
+                <label class="labelMain">Straße</label>
+                <input class="inputMain inputFirstColumn" [(ngModel)]="street" type="text">
+                <label class="labelMain labelSecondColumn" style="width: 50px;">Nr.</label>
+                <input class="inputMain inputSecondColumn" style="width: 50px;" [(ngModel)]="houseNumber" type="text">
+                <label class="labelMain labelThirdColumn" style="width: 50px;">PLZ</label>
+                <input class="inputMain inputThirdColumn" style="width: 50px;" [(ngModel)]="plz" type="text">
+                <label class="labelMain label4thColumn">Ort</label>
+                <input class="inputMain input4thColumn" [(ngModel)]="place" type="text">
+            </div>
+
+            <h4 style="margin-bottom: 12px;">Arbeitsrelavante Einstellungen</h4>
+            <div style="display: flex; flex-direction: row; margin-bottom: 24px; margin-left: 32px;">
+                <label class="labelMain">Urlaubsanspruch</label><p style="font-size: 10px; color: #505050; padding-top: 6px; margin-left: 4px; margin-right: 12px;">(Regelanspruch)</p>
+                <input class="inputMain" [(ngModel)]="vacationClaim" type="text">
+                <label class="labelMain">Urlaubsanspruch</label><p style="font-size: 10px; color: #505050; padding-top: 6px; margin: 0 4px;">(dieses Jahr, falls abw.)</p>
+                <input class="inputMain" [(ngModel)]="vacationClaimFirstYear" type="text">
+            </div>
+
+            <button style="margin-top: 12px" (click)="onClickSave()">Speichern</button>
+        </div>
     </div>
 </div>
 
-<div style="margin-left: 12px;">
-    <h1>Benutzerkonto erstellen</h1>
-    <hr>
-    <h3 style="margin-bottom: 16px;">Benutzerkonto</h3>
-    <div style="display: flex; flex-direction: row">
-        <label style="width: 150px;">Benutzername</label><input [(ngModel)]="nameI" type="text" style="margin-right: 32px;">
-        <label style="width: 120px;">Kennwort</label><input [(ngModel)]="nameII" type="text" style="margin-right: 32px;">
-    </div>
-    <div style="display: flex; flex-direction: row">
-        <label style="width: 150px;">Vorname</label><input [(ngModel)]="username" type="text" style="margin-right: 32px;">
-        <label style="width: 120px;">Nachname</label><input [(ngModel)]="password" type="text" style="margin-right: 32px;">
-    </div>
-    <button (click)="onClickSave()">Speichern</button>
-</div>
+
+
+
+
+
+
+
+
+
+

@@ -1,20 +1,147 @@
-.heading {
-    height: 1.5em;
+/*style="background: url(../../assets/img/login-bgr-2-1920-1080.png);height: 100%; background-repeat: none; position: relative; "*/
+
+/*.background {*/
+    /*background: url(../../assets/img/login-bgr-3-1920-1080.png);*/
+    /*height: 100%;*/
+    /*background-repeat: no-repeat;*/
+    /*position: relative;*/
+    /*opacity: 0.9;*/
+/*}*/
+
+.container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 230px;
+}
+
+.box {
+    text-align: center;
+}
+
+.box.box1 {
+    /*background-color: darkorange;*/
+    flex: 8;
+}
+
+.box.box2 {
+    /*background-color: lime;*/
+    flex: 6;
+    text-align: left;
+    box-sizing: border-box;
+    padding-left: 200px;
+    padding-top: 30px;
+}
+
+.icon {
+    /*background-color: #3498DB;*/
+    height: 150px;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.icon img {
+    width: 150px;
+    opacity: 0.6;
 }
 
 .input {
-    /*background-color: khaki;*/
-    color: blue;
+    background-color: rgba(255,255,255,0.2);
+    padding: 5px 16px;
+    border-radius: 12px;
+    outline: none;
+    width: 320px;
+    height: 32px;
+    border: 0;
+    margin: 4px 0;
+    font-size: 1.2em;
 }
 
-.inputSuccess {
-    color: darkseagreen;
+.input::placeholder {
+    color: #292929;
 }
 
-.inputFailed {
-    color: red;
+.input.password {
+    margin-bottom: 20px;
 }
 
-.button {
-    margin: 10px 0;
+.additionalData {
+    /*background-color: lime;*/
+    margin-bottom: 12px;
 }
+
+.rememberLogin {
+    /*background-color: darkorange;*/
+    text-align: right;
+    padding-right: 10px;
+    margin-top: 4px;
+}
+
+.forgotPassword {
+    /*background-color: darkseagreen;*/
+    text-align: left;
+    padding-left: 10px;
+}
+
+.forgotPasswordButton {
+    background-color: rgba(255,255,255,0.2);
+    border: none;
+    outline: none;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.forgotPasswordButton:hover {
+    background-color: rgba(255,255,255,0.6);
+}
+
+.input.login-button {
+    background-color: rgba(255,255,255,0.5);
+    width: 350px;
+    height: 42px;
+    padding: 5px 16px;
+}
+
+.input.login-button:hover {
+    background-color: rgba(255,255,255,0.8);
+
+}
+
+.loginMessageContainer {
+    background-color: rgba(255,0,0,0.7);
+    margin-top: 20px;
+    height: 64px;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    border-radius: 12px;
+    padding-left: 2px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.loginMessageContainerRight {
+    display: flex;
+    flex-direction: column;
+    padding-top: 6px;
+}
+
+.exclamation {
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+    padding: 0 8px;
+}
+
+.z1 {
+    font-size: 20px;
+}
+
+.z2 {
+    font-size: 12px;
+}
+
