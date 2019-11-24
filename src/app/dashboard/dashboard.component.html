@@ -1,32 +1,69 @@
 <div class="background">
+
     <!--Area => Header-->
     <app-header></app-header>
 
-    <div style="display: flex; flex-direction: row; box-sizing: border-box">
-        <div style="width: 240px; margin: 8px 8px">
+    <div style="display: flex; flex-direction: row; box-sizing: border-box; height: 100%">
+        <!-- Navigation -->
+        <div style="width: 240px">
             <app-navigation-admin *ngIf="isCurrentUserAdmin"></app-navigation-admin>
             <app-navigation *ngIf="!isCurrentUserAdmin"></app-navigation>
         </div>
-        <div style="flex: 1; box-sizing: border-box; margin: 8px 8px">
-            <div style="margin: 8px 8px">
-                <h3>Dashboard:</h3>
-                <div *ngFor="let vacation of vacationList"
-                     style="height: 30px; border: 1px solid lightseagreen; margin-bottom: 10px; display: flex; flex-direction: row; align-items: center">
-                    <div style="flex: 2">Urlaubnehmer: {{vacation.employee.nameI}} {{vacation.employee.nameII}}</div>
-                    <div style="flex: 2; display: flex; flex-direction: row">
-                        <div style="width: 150px;">von: {{vacation.dateFrom | date:'dd.MM.yyyy'}}</div>
-                        <div style="width: 100px;" *ngIf="vacation.isHalfDayFrom"> halber Tag</div>
-                    </div>
-                    <div style="flex: 2; display: flex; flex-direction: row">
-                        <div style="width: 150px;">bis: {{vacation.dateTo | date:'dd.MM.yyyy'}}</div>
-                        <div style="width: 100px;" *ngIf="vacation.isHalfDayTo">halber Tag</div>
-                    </div>
-                    <div style="flex: 1">Urlaubstage: {{vacation.vacationDays}}</div>
+
+        <!-- MainContent -->
+        <div style="margin-left: 12px; width: 100%; margin-right: 12px; margin-top: 1px; padding: 8px 12px; background-color: rgba(253,253,253,0.8)">
+
+            <!-- Content - Header -->
+            <div style="display: flex; flex-direction: row; position: relative">
+                <h2 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Dashboard</h2>
+                <div style="margin: 10px 0">
+                    <button style="width: 180px" [routerLink]="['/dashboard']">Ohne Funktion</button>
                 </div>
             </div>
+            <hr>
+
+            <!-- Content -->
+            <h3>Urlaubsanträge ihrer Mitarbeiter:</h3>
+            <div *ngFor="let vacation of vacationList"
+                 style="height: 30px; border: 1px solid lightseagreen; display: flex; flex-direction: row; align-items: center">
+                <div style="flex: 2">Urlaubnehmer: {{vacation.employee.nameI}} {{vacation.employee.nameII}}</div>
+                <div style="flex: 2; display: flex; flex-direction: row">
+                    <div style="width: 150px;">von: {{vacation.dateFrom | date:'dd.MM.yyyy'}}</div>
+                    <div style="width: 100px;" *ngIf="vacation.isHalfDayFrom"> halber Tag</div>
+                </div>
+                <div style="flex: 2; display: flex; flex-direction: row">
+                    <div style="width: 150px;">bis: {{vacation.dateTo | date:'dd.MM.yyyy'}}</div>
+                    <div style="width: 100px;" *ngIf="vacation.isHalfDayTo">halber Tag</div>
+                </div>
+                <div style="flex: 1">Urlaubstage: {{vacation.vacationDays}}</div>
+            </div>
+
+            <h3 style="margin-top: 24px;">Meine offenen Anträge:</h3>
+
+
+
+
         </div>
     </div>
 </div>
+
+
+
+<!-- TEST -->
+
+<!--<div class="background">-->
+    <!--<app-header></app-header>-->
+    <!--<div style="display: flex; flex-direction: row; box-sizing: border-box; height: 100%; position: absolute; overflow: hidden; bottom: 0px; padding-top: 52px;">-->
+        <!--<div style="background-color: darkorange; width: 240px; height: 100%; margin: 12px 12px; overflow: auto">-->
+            <!--test-->
+        <!--</div>-->
+        <!--<div style="background-color: darkseagreen; width: auto; height: 100%; margin-top: 12px; margin-left: auto; margin-right: auto; overflow: auto">-->
+            <!--test-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+
 
 <!--<hr>-->
 <!--<input type="text" [value]="test">-->

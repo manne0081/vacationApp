@@ -5,7 +5,7 @@
     <router-outlet></router-outlet>
 
     <div style="display: flex; flex-direction: row; box-sizing: border-box; height: 100%">
-        <div style="width: 240px; margin: 8px 8px">
+        <div style="width: 240px">
             <app-navigation-admin *ngIf="isCurrentUserAdmin"></app-navigation-admin>
             <app-navigation *ngIf="!isCurrentUserAdmin"></app-navigation>
         </div>
@@ -37,7 +37,7 @@
                 <label class="labelMain labelSecondColumn">Nachname</label>
                 <input class="inputMain inputSecondColumn" [(ngModel)]="nameII" type="text">
             </div>
-            <div style="display: flex; flex-direction: row; margin-bottom: 9px; margin-left: 32px;">
+            <div style="display: flex; flex-direction: row; margin-bottom: 24px; margin-left: 32px;">
                 <label class="labelMain">Straße</label>
                 <input class="inputMain inputFirstColumn" [(ngModel)]="street" type="text">
                 <label class="labelMain labelSecondColumn" style="width: 50px;">Nr.</label>
@@ -52,7 +52,7 @@
             <div style="display: flex; flex-direction: row; margin-bottom: 24px; margin-left: 32px;">
                 <label class="labelMain">Urlaubsanspruch</label><p style="font-size: 10px; color: #505050; padding-top: 6px; margin-left: 4px; margin-right: 12px;">(Regelanspruch)</p>
                 <input class="inputMain" [(ngModel)]="vacationClaim" type="text">
-                <label class="labelMain">Urlaubsanspruch</label><p style="font-size: 10px; color: #505050; padding-top: 6px; margin: 0 4px;">(dieses Jahr, falls abw.)</p>
+                <label class="labelMain">Urlaubsanspruch</label><p style="font-size: 10px; color: #505050; padding-top: 6px; margin-left: 4px; margin-right: 12px;">(Bei Beginn, falls abw.)</p>
                 <input class="inputMain" [(ngModel)]="vacationClaimFirstYear" type="text">
             </div>
 

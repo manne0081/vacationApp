@@ -3,7 +3,7 @@ import { VacationClaim} from './vacationClaim.model';
 import { EmployeeService} from '../../services/employee.service';
 import { Employee } from '../../employee/employee.model';
 import { SessionService } from '../../services/session.service';
-import { VacationService } from '../../services/vacation.service';
+import { VacationService } from '../vacation.service';
 
 @Component({
   selector: 'app-vacation-claim',

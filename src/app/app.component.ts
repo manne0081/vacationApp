@@ -4,7 +4,7 @@ import { LogService } from './services/log.service';
 import { SessionService } from './services/session.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { VacationService } from './services/vacation.service';
+import { VacationService } from './vacation/vacation.service';
 import {DepartmentService} from './services/department.service';
 
 @Component({

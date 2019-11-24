@@ -1,5 +1,5 @@
-import { Vacation } from '../vacation/vacation.model';
-import { VacationClaim } from '../vacation/vacation-claim/vacationClaim.model';
+import { Vacation } from './vacation.model';
+import { VacationClaim } from './vacation-claim/vacationClaim.model';
 import { Employee } from '../employee/employee.model';
 
 export class VacationService {

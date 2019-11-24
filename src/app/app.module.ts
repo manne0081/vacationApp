@@ -13,7 +13,7 @@ import { EmployeeService } from './services/employee.service';
 import { VacationComponent } from './vacation/vacation.component';
 import { SessionService } from './services/session.service';
 import { LogService } from './services/log.service';
-import { VacationService } from './services/vacation.service';
+import { VacationService } from './vacation/vacation.service';
 import { VacationClaimComponent } from './vacation/vacation-claim/vacation-claim.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { DepartmentComponent } from './department/department.component';

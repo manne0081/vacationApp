@@ -4,7 +4,7 @@ import { LogService } from '../../services/log.service';
 @Component({
   selector: 'app-navigation-admin',
   templateUrl: './navigation-admin.component.html',
-  styleUrls: ['./navigation-admin.component.css']
+  styleUrls: ['../navigation.component.css']
 })
 export class NavigationAdminComponent implements OnInit {
 
