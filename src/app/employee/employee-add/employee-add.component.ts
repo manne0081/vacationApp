@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {EmployeeService} from '../../services/employee.service';
+import {EmployeeService} from '../employee.service';
 import {SessionService} from '../../services/session.service';
+import {Department} from '../../department/department.model';
+import {DepartmentService} from '../../department/department.service';
 
 @Component({
     selector: 'app-employee-add',
@@ -18,15 +20,19 @@ export class EmployeeAddComponent implements OnInit {
     private place;
     private vacationClaim;
     private vacationClaimFirstYear;
-
-    private successfullyCreated = false;
     private isCurrentUserAdmin = false;
+    private successfullyCreated = false;
 
-    constructor(private employeeService: EmployeeService, private sessionService: SessionService) {
+    private department: Department;
+    private departments: Department;
+
+    constructor(private employeeService: EmployeeService, private sessionService: SessionService,
+                private departmentService: DepartmentService) {
     }
 
     ngOnInit() {
         this.password = 'test1234';
+        this.departments = this.departmentService.getAllDepartments();
         if (this.sessionService.getUser().username === 'dagobert') {
             this.isCurrentUserAdmin = true;
         }
@@ -43,17 +49,9 @@ export class EmployeeAddComponent implements OnInit {
         // let n = this.employeeService.getAllEmployee().pop().employeeNumber;  //Entfernt den letzten Eintrag im Array...
         let n = this.employeeService.getAllEmployee()[this.employeeService.getAllEmployee().length - 1].employeeNumber;
         n++;
-        this.employeeService.addEmployee(this.nameI, this.nameII, this.username, this.password, n);
+        this.employeeService.addEmployee(this.nameI, this.nameII, this.username, this.password, n, this.department);
 
-        // create vacationClaim record
-
-
-        // delete fields after objects created
-        // this.nameI = '';
-        // this.nameII = '';
-        // this.username = '';
-        // this.password = '';
-
+        console.log(this.department);
         this.successfullyCreated = true;
     }
 }

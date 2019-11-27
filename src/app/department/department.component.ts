@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Department} from './department.model';
-import {DepartmentService} from '../services/department.service';
+import {DepartmentService} from './department.service';
 
 @Component({
   selector: 'app-department',

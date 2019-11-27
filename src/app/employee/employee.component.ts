@@ -1,5 +1,5 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {EmployeeService} from '../services/employee.service';
+import {EmployeeService} from './employee.service';
 import {Employee} from './employee.model';
 import {SessionService} from '../services/session.service';
 

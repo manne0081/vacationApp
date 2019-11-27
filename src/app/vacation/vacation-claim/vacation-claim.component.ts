@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VacationClaim} from './vacationClaim.model';
-import { EmployeeService} from '../../services/employee.service';
+import { EmployeeService} from '../../employee/employee.service';
 import { Employee } from '../../employee/employee.model';
 import { SessionService } from '../../services/session.service';
 import { VacationService } from '../vacation.service';

@@ -4,6 +4,7 @@ import {LogService} from '../services/log.service';
 import {VacationService} from '../vacation/vacation.service';
 import {Vacation} from '../vacation/vacation.model';
 import {Router} from '@angular/router';
+import {Department} from '../../department/department.model';
 
 @Component({
     selector: 'app-dashboard',
@@ -53,5 +54,4 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
         console.log('blur');
         this.values = value;
     }
-
 }

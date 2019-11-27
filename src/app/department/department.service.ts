@@ -1,4 +1,4 @@
-import { Department } from '../department/department.model';
+import { Department } from './department.model';
 
 export class DepartmentService {
   private departmentList: Department[] = [];

@@ -1,8 +1,10 @@
-import { Employee } from '../employee/employee.model';
+import { Employee } from './employee.model';
+import {Department} from '../department/department.model';
 
 export class EmployeeService {
   private employeeList: Employee[] = [];
   private employeeNumber = 10000;
+
   showAddEmployee = false;
   private test = 'testString';
 
@@ -15,8 +17,8 @@ export class EmployeeService {
     this.addEmployee('Donald', 'Duck', 'donald', 'pass', n);
   }
 
-  addEmployee(nameI: string, nameII: string, username: string, password: string, employeeNumber: number) {
-    this.employeeList.push(new Employee(nameI, nameII, username, password, employeeNumber));
+  addEmployee(nameI: string, nameII: string, username: string, password: string, employeeNumber: number, department: Department) {
+    this.employeeList.push(new Employee(nameI, nameII, username, password, employeeNumber, department));
   }
 
   getAllEmployee() {

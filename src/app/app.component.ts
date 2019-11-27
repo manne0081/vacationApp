@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from './services/employee.service';
+import { EmployeeService } from './employee/employee.service';
 import { LogService } from './services/log.service';
 import { SessionService } from './services/session.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { VacationService } from './vacation/vacation.service';
-import {DepartmentService} from './services/department.service';
+import {DepartmentService} from './department/department.service';
 
 @Component({
   selector: 'app-root',

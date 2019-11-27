@@ -2,7 +2,7 @@ import {Component, OnInit, ElementRef, ViewChild, AfterViewInit} from '@angular/
 import {Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
 
-import {EmployeeService} from '../services/employee.service';
+import {EmployeeService} from '../employee/employee.service';
 import {SessionService} from '../services/session.service';
 import {LogService} from '../services/log.service';
 
