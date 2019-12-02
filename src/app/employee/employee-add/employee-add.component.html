@@ -51,18 +51,14 @@
             <h4 style="margin-bottom: 12px;">Arbeitsrelavante Einstellungen</h4>
             <div style="display: flex; flex-direction: row; margin-bottom: 24px; margin-left: 32px;">
                 <label class="labelMain" style="margin-right: 12px;">Abteilung</label>
-                <select id="department" name="department"
-                        style="width: 160px;
-                        appearance: none;
-                        border: none;
-                        outline: none;
-                        border-right: 1px solid #909090;
-                        border-bottom: 1px solid #909090;
-                        padding: 4px 6px;
-                        margin-right: 48px;"
-                        [(ngModel)]="department" class="form-control">
+                <select id="department" class="form-control dropdown" name="department" [(ngModel)]="department" >
                     <option *ngFor="let dept of departments" [value]="dept.name">
                         {{dept.name}}
+                    </option>
+                </select>
+                <select id="department-type" class="form-control dropdown dept-type" name="department-type" [(ngModel)]="departmentType" >
+                    <option *ngFor="let deptType of deptTypes" [value]="deptType">
+                        {{deptType}}
                     </option>
                 </select>
                 <label class="labelMain">Urlaubsanspruch</label><p style="font-size: 10px; color: #505050; padding-top: 6px; margin-left: 4px; margin-right: 12px;">(Regelanspruch)</p>
@@ -70,6 +66,8 @@
                 <label class="labelMain">Urlaubsanspruch</label><p style="font-size: 10px; color: #505050; padding-top: 6px; margin-left: 4px; margin-right: 12px;">(Bei Beginn, falls abw.)</p>
                 <input class="inputMain" [(ngModel)]="vacationClaimFirstYear" type="text">
             </div>
+
+            <h4 style="margin-bottom: 12px;">Lohnrelavante Einstellungen</h4>
 
             <button style="margin-top: 12px" (click)="onClickSave()">Speichern</button>
         </div>

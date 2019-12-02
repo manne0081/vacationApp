@@ -54,7 +54,7 @@ export class VacationComponent implements OnInit {
         }
         vacationDays += 1 - halfDay;
 
-        this.vacationService.addVacation(this.sessionService.getUser(), this.vacationFrom, this.vacationTo, this.isHalfDayFrom, this.isHalfDayTo, vacationDays);
+        this.vacationService.addVacation(1, this.sessionService.getUser(), this.vacationFrom, this.vacationTo, this.isHalfDayFrom, this.isHalfDayTo, vacationDays);
         console.log(this.vacationService.getAllVacation());
     }
 

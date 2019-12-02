@@ -18,6 +18,7 @@
                 <h2 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Dashboard</h2>
                 <div style="margin: 10px 0">
                     <button style="width: 180px" [routerLink]="['/dashboard']">Ohne Funktion</button>
+                    <button style="width: 220px" (click)="onClickTest()">3 Urlaubseinträge erzeugen</button>
                 </div>
             </div>
             <hr>
@@ -25,7 +26,7 @@
             <!-- Content -->
             <h3>Urlaubsanträge ihrer Mitarbeiter:</h3>
             <div *ngFor="let vacation of vacationList"
-                 style="height: 30px; border: 1px solid lightseagreen; display: flex; flex-direction: row; align-items: center">
+                 style="height: 30px; border: 1px solid lightseagreen; margin-top: -1px; display: flex; flex-direction: row; align-items: center">
                 <div style="flex: 2">Urlaubnehmer: {{vacation.employee.nameI}} {{vacation.employee.nameII}}</div>
                 <div style="flex: 2; display: flex; flex-direction: row">
                     <div style="width: 150px;">von: {{vacation.dateFrom | date:'dd.MM.yyyy'}}</div>
@@ -41,8 +42,9 @@
             <h3 style="margin-top: 24px;">Meine offenen Anträge:</h3>
 
             <!--TEST-->
-            <!--<hr>-->
-
+            <hr>
+            <h4>Test</h4>
+            <button (click)="onClickTest()">testButton</button>
 
         </div>
     </div>

@@ -70,3 +70,18 @@
     left: 1261px;
 }
 
+.dropdown {
+    width: 160px;
+    /*appearance: none;*/
+    border: none;
+    outline: none;
+    border-right: 1px solid #909090;
+    border-bottom: 1px solid #909090;
+    padding: 4px 6px;
+    margin-right: 48px;
+}
+
+.dept-type {
+    width: 180px;
+}
+

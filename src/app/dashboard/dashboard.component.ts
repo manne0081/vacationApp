@@ -4,7 +4,8 @@ import {LogService} from '../services/log.service';
 import {VacationService} from '../vacation/vacation.service';
 import {Vacation} from '../vacation/vacation.model';
 import {Router} from '@angular/router';
-import {Department} from '../../department/department.model';
+import {DepartmentService} from '../department/department.service';
+import {consoleTestResultHandler} from 'tslint/lib/test';
 
 @Component({
     selector: 'app-dashboard',
@@ -19,17 +20,21 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
     private isCurrentUserAdmin = false;
 
     constructor(private sessionService: SessionService, private logService: LogService,
-                private vacationService: VacationService, private routerService: Router) {
+                private vacationService: VacationService, private routerService: Router,
+                private departmentService: DepartmentService) {
     }
 
     ngOnInit() {
         if (!this.sessionService.isSetUser()) {
+            // do this when the rememberCookie isnt active...
             this.routerService.navigate(['./home']);
         } else {
+            // do this when the cookie is active
             if (this.sessionService.getUser().username === 'dagobert') {
                 this.isCurrentUserAdmin = true;
             }
-            this.vacationService.addVacationOnInit(this.sessionService.getUser());
+            // gets the new vacationEtries when the sessionUser is an first- or secondHead...
+            // this.vacationService.addVacationOnInit();
         }
     }
 
@@ -42,7 +47,10 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     onClickTest(event: any): void {
-        this.test = 'You clicked the button';
+        // this.test = 'You clicked the button';
+        this.vacationService.addVacationOnInit();
+        console.log(this.departmentService.getDepartmentByShortHand(1));
+        console.log();
     }
 
     onKeyUp(event: any): void {
