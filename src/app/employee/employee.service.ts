@@ -16,11 +16,11 @@ export class EmployeeService {
 
     addEmployeeOnInit(): void {
         let n = this.employeeNumber + this.employeeList.length + 1;
-        this.addEmployee('Daniel', 'Düsentrieb', 'daniel', 'pass', n, this.departmentService.getDepartmentByShortHand(0));
+        this.addEmployee('Daniel', 'Düsentrieb', 'daniel', 'pass', n, this.departmentService.getDepartmentById(0));
         n++;
-        this.addEmployee('Dagobert', 'Duck', 'dagobert', 'pass', n, this.departmentService.getDepartmentByShortHand(1));
+        this.addEmployee('Dagobert', 'Duck', 'dagobert', 'pass', n, this.departmentService.getDepartmentById(1));
         n++;
-        this.addEmployee('Donald', 'Duck', 'donald', 'pass', n, this.departmentService.getDepartmentByShortHand(2));
+        this.addEmployee('Donald', 'Duck', 'donald', 'pass', n, this.departmentService.getDepartmentById(2));
     }
 
     addEmployee(nameI: string, nameII: string, username: string, password: string, employeeNumber: number, department: Department) {
@@ -29,6 +29,10 @@ export class EmployeeService {
 
     getAllEmployee() {
         return this.employeeList;
+    }
+
+    getEmployeeById(id: number): Employee {
+        return this.employeeList.find(employee => employee.id === id);
     }
 
     getTest(): string {

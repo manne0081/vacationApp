@@ -11,22 +11,21 @@
         </div>
 
         <!-- MainContent -->
-        <div style="margin-left: 12px; width: 100%; margin-right: 12px; margin-top: 1px; padding: 8px 12px; background-color: rgba(253,253,253,0.8)">
+        <div style="margin-left: 12px; width: 100%; margin-right: 12px; padding: 8px 12px; background-color: rgba(253,253,253,0.85);">
 
             <!-- Content - Header -->
             <div style="display: flex; flex-direction: row; position: relative">
                 <h2 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Dashboard</h2>
                 <div style="margin: 10px 0">
                     <button style="width: 180px" [routerLink]="['/dashboard']">Ohne Funktion</button>
-                    <button style="width: 220px" (click)="onClickTest()">3 Urlaubseinträge erzeugen</button>
                 </div>
             </div>
             <hr>
 
             <!-- Content -->
-            <h3>Urlaubsanträge ihrer Mitarbeiter:</h3>
+            <h3 style="margin-bottom: 12px;">Urlaubsanträge ihrer Mitarbeiter:</h3>
             <div *ngFor="let vacation of vacationList"
-                 style="height: 30px; border: 1px solid lightseagreen; margin-top: -1px; display: flex; flex-direction: row; align-items: center">
+                 style="height: 48px; background-color: rgba(253,253,253,0.8); border: 1px solid #505050; border-left: none; margin-top: -1px; margin-left: -12px; padding-left: 12px; display: flex; flex-direction: row; align-items: center">
                 <div style="flex: 2">Urlaubnehmer: {{vacation.employee.nameI}} {{vacation.employee.nameII}}</div>
                 <div style="flex: 2; display: flex; flex-direction: row">
                     <div style="width: 150px;">von: {{vacation.dateFrom | date:'dd.MM.yyyy'}}</div>

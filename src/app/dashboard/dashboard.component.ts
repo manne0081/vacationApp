@@ -39,18 +39,19 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnChanges() {
-        console.log('ngOnChanges...');
+        // console.log('ngOnChanges...');
     }
 
     ngOnDestroy() {
-        console.log('ngOnDestroy...');
+        // console.log('ngOnDestroy...');
     }
 
     onClickTest(event: any): void {
         // this.test = 'You clicked the button';
         this.vacationService.addVacationOnInit();
-        console.log(this.departmentService.getDepartmentByShortHand(1));
-        console.log();
+        console.log(this.departmentService.getDepartmentById(1));
+        // console.log(this.sessionService.getTest());
+
     }
 
     onKeyUp(event: any): void {

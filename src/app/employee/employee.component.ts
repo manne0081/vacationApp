@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {Component, OnInit, OnDestroy, AfterViewInit} from '@angular/core';
 import {EmployeeService} from './employee.service';
 import {Employee} from './employee.model';
 import {SessionService} from '../services/session.service';
@@ -8,7 +8,7 @@ import {SessionService} from '../services/session.service';
     templateUrl: './employee.component.html',
     styleUrls: ['./employee.component.css']
 })
-export class EmployeeComponent implements OnInit, AfterViewInit {
+export class EmployeeComponent implements OnInit, OnDestroy, AfterViewInit {
     private showAddEmployee = false;
     private showAddConfig = false;
     private isCurrentUserAdmin = false;
@@ -25,6 +25,11 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
         if (this.sessionService.getUser().username === 'dagobert') {
             this.isCurrentUserAdmin = true;
         }
+        this.sessionService.setTest(true);
+    }
+
+    ngOnDestroy(): void {
+        // this.sessionService.setTest(false);
     }
 
     ngAfterViewInit() {

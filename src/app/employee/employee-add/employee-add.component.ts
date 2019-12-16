@@ -25,7 +25,7 @@ export class EmployeeAddComponent implements OnInit {
 
     private department: Department;
     private departments: Department[];
-    private deptTypes: string[] = ['Mitarbeiter', 'Abteilungsleiter', 'Stellv. Abteilungsleiter'];
+    // private deptTypes: string[] = ['Mitarbeiter', 'Abteilungsleiter', 'Stellv. Abteilungsleiter'];
 
     constructor(private employeeService: EmployeeService, private sessionService: SessionService,
                 private departmentService: DepartmentService) {
@@ -50,7 +50,7 @@ export class EmployeeAddComponent implements OnInit {
         // let n = this.employeeService.getAllEmployee().pop().employeeNumber;  //Entfernt den letzten Eintrag im Array...
         let n = this.employeeService.getAllEmployee()[this.employeeService.getAllEmployee().length - 1].employeeNumber;
         n++;
-        this.employeeService.addEmployee(this.nameI, this.nameII, this.username, this.password, n, this.departmentService.getDepartmentByShortHand(1));
+        this.employeeService.addEmployee(this.nameI, this.nameII, this.username, this.password, n, this.departmentService.getDepartmentById(1));
 
         // if an employee is first- or secondHead, set this to the department record
 
