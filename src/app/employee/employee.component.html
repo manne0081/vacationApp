@@ -11,7 +11,7 @@
         </div>
 
         <!--Area => employeeOverview-->
-        <div style="margin-left: 12px; width: 100%; margin-right: 12px; margin-top: 1px; padding: 8px 12px; background-color: rgba(253,253,253,0.8)">
+        <div style="margin-left: 12px; width: 100%; margin-right: 12px; padding: 8px 12px; background-color: rgba(253,253,253,0.8)">
             <div style="display: flex; flex-direction: row; position: relative">
                 <h2 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Mitarbeiter-Übersicht</h2>
                 <div style="margin: 10px 0">
@@ -21,7 +21,7 @@
             <!--Area => employeeOverviewList-->
             <hr *ngIf="!showAddEmployee">
             <div style="border-top: 1px solid #505050; width: 100%;">
-                <div *ngFor="let employee of employeeList" (click)="onClickItem()">
+                <div *ngFor="let employee of employeeList" [routerLink]="['/employee-edit']">
                     <div
                         style="height: 50px; padding: 5px 10px; border-bottom: 1px solid #505050; border-left: 8px solid #505050">
                         <input type="checkbox">

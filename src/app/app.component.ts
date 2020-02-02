@@ -24,8 +24,6 @@ export class AppComponent implements OnInit {
         if (!this.sessionService.isSetUser()) {
             this.routerService.navigate(['./home']);
         }
-        this.employeeService.addEmployeeOnInit();
-        this.departmentService.addDepartmentOnInit();
     }
 }
 

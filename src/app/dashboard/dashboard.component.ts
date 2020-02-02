@@ -33,8 +33,6 @@ export class DashboardComponent implements OnInit, OnChanges, OnDestroy {
             if (this.sessionService.getUser().username === 'dagobert') {
                 this.isCurrentUserAdmin = true;
             }
-            // gets the new vacationEtries when the sessionUser is an first- or secondHead...
-            // this.vacationService.addVacationOnInit();
         }
     }
 

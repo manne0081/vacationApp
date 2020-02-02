@@ -21,6 +21,7 @@ import {DepartmentService} from './department/department.service';
 import {EmployeeAddComponent} from './employee/employee-add/employee-add.component';
 import {NavigationComponent} from './navigation/navigation.component';
 import {NavigationAdminComponent} from './navigation/navigation-admin/navigation-admin.component';
+import { EmployeeEditComponent } from './employee/employee-edit/employee-edit.component';
 // import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
@@ -37,6 +38,7 @@ import {NavigationAdminComponent} from './navigation/navigation-admin/navigation
         EmployeeAddComponent,
         NavigationComponent,
         NavigationAdminComponent,
+        EmployeeEditComponent,
         // MatFormFieldModule,
     ],
     imports: [

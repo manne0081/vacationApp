@@ -37,7 +37,7 @@ export class EmployeeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onClickItem(): void {
-        console.log('Item clicked...');
+        console.log('Employee Item clicked...');
     }
 
     onClickSetEmployeeToFirstHead(event: Event) {

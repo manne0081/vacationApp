@@ -7,6 +7,7 @@ import {VacationClaimComponent} from './vacation/vacation-claim/vacation-claim.c
 import {EmployeeComponent} from './employee/employee.component';
 import {DepartmentComponent} from './department/department.component';
 import {EmployeeAddComponent} from './employee/employee-add/employee-add.component';
+import {EmployeeEditComponent} from './employee/employee-edit/employee-edit.component';
 
 const APP_ROUTES: Routes = [
     {path: '', component: HomeComponent},
@@ -16,6 +17,7 @@ const APP_ROUTES: Routes = [
     {path: 'department', component: DepartmentComponent},
     {path: 'employee', component: EmployeeComponent},
     {path: 'employee-add', component: EmployeeAddComponent},
+    {path: 'employee-edit', component: EmployeeEditComponent},
     {path: 'vacation', component: VacationComponent},
     {path: 'vacationClaim', component: VacationClaimComponent}
 ];

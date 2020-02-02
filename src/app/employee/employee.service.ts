@@ -1,34 +1,48 @@
 import {Employee} from './employee.model';
-import {Department} from '../department/department.model';
-import {DepartmentService} from '../department/department.service';
 import {Injectable} from '@angular/core';
 
 @Injectable()
 export class EmployeeService {
-    private employeeList: Employee[] = [];
     private employeeNumber = 10000;
-
-    showAddEmployee = false;
     private test = 'testString';
+    showAddEmployee = false;
 
-    constructor(private departmentService: DepartmentService) {
+    private employeeList: Employee[] = [
+        new Employee('Dagobert',
+                     'Duck',
+                     'dagobert',
+                     'pass',
+                      this.createEmployeeNumber(1)),
+        new Employee('Donald',
+                     'Duck',
+                     'donald',
+                     'pass',
+                      this.createEmployeeNumber(2)),
+        new Employee('Daniel',
+                     'Düsentrieb',
+                     'daniel',
+                     'pass',
+                      this.createEmployeeNumber(3))
+    ];
+
+    constructor() {
     }
 
-    addEmployeeOnInit(): void {
-        let n = this.employeeNumber + this.employeeList.length + 1;
-        this.addEmployee('Daniel', 'Düsentrieb', 'daniel', 'pass', n, this.departmentService.getDepartmentById(0));
-        n++;
-        this.addEmployee('Dagobert', 'Duck', 'dagobert', 'pass', n, this.departmentService.getDepartmentById(1));
-        n++;
-        this.addEmployee('Donald', 'Duck', 'donald', 'pass', n, this.departmentService.getDepartmentById(2));
+    createEmployeeNumber(m: number): number {
+        const n = this.employeeNumber + m;
+        return n;
     }
 
-    addEmployee(nameI: string, nameII: string, username: string, password: string, employeeNumber: number, department: Department) {
-        this.employeeList.push(new Employee(nameI, nameII, username, password, employeeNumber, department));
+    addEmployee(nameI: string, nameII: string, username: string, password: string, employeeNumber: number) {
+        this.employeeList.push(new Employee(nameI, nameII, username, password, employeeNumber));
     }
 
     getAllEmployee() {
         return this.employeeList;
+    }
+
+    private getEmployeeNumber(): number {
+        return this.employeeList.length + 1;
     }
 
     getEmployeeById(id: number): Employee {

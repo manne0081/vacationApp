@@ -38,5 +38,4 @@ export class SessionService {
     setTest(test: boolean) {
         this.isSetTest = test;
     }
-
 }

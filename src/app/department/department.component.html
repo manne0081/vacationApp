@@ -10,12 +10,13 @@
             <app-navigation *ngIf="!isCurrentUserAdmin"></app-navigation>
         </div>
 
-        <!--Area => employeeOverview-->
-        <div style="margin-left: 12px; width: 100%; margin-right: 12px; margin-top: 1px; padding: 8px 12px; background-color: rgba(253,253,253,0.8)">
+        <!--Area => departmentOverview-->
+        <div style="margin-left: 12px; width: 100%; margin-right: 12px; padding: 8px 12px; background-color: rgba(253,253,253,0.8)">
             <div style="display: flex; flex-direction: row; position: relative">
                 <h2 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Abteilungsverwaltung</h2>
                 <div style="margin: 10px 0">
-                    <button style="width: 180px" [routerLink]="['/employee-add']">Abteilung erstellen</button>
+                    <button style="width: 180px">Abteilung erstellen</button>
+                    <button (click)="setDepartmentEmployee()">test</button>
                 </div>
             </div>
             <!--Area => employeeOverviewList-->
@@ -26,11 +27,11 @@
                     <div
                         style="height: 50px; padding: 5px 10px; border-bottom: 1px solid #505050; border-left: 8px solid #505050">
                         <input type="checkbox">
-                        {{ depts.name }} - {{ depts.firstHead }}
+                        {{ depts.departmentNumber }} - {{ depts.name }} - {{ depts.firstHead }}
                     </div>
                 </div>
             </div>
-            <!--<p style="margin: 5px 18px; color: #202020; font-size: 12px">Anzahl: {{ employeeList.length }}</p>-->
+            <p style="margin: 5px 18px; color: #202020; font-size: 12px">Anzahl: {{ departmentList.length }}</p>
         </div>
     </div>
 </div>

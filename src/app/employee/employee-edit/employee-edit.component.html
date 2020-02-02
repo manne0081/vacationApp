@@ -1,0 +1,79 @@
+<div class="background">
+    <!--Area => Header-->
+    <app-header></app-header>
+
+    <router-outlet></router-outlet>
+
+    <div style="display: flex; flex-direction: row; box-sizing: border-box; height: 100%">
+        <div style="width: 240px">
+            <app-navigation-admin *ngIf="isCurrentUserAdmin"></app-navigation-admin>
+            <app-navigation *ngIf="!isCurrentUserAdmin"></app-navigation>
+        </div>
+
+        <!--Area => employeeOverview-->
+        <div class="container-content">
+            <div class="container-contentHeader">
+                <h2>Benutzerkonto erstellen</h2>
+                <div style="margin: 10px 0">
+                    <button style="width: 180px" [routerLink]="['/employee']">zurück...</button>
+                </div>
+                <div style="padding-top: 16px; margin-left: 16px;"
+                     *ngIf="successfullyCreated">Erfolgreich erstellt!</div>
+            </div>
+            <hr>
+
+            <h4 style="margin-bottom: 12px;">Kontodaten</h4>
+            <div style="display: flex; flex-direction: row; margin-bottom: 24px; margin-left: 32px;">
+                <label class="labelMain">Benutzername</label>
+                <input class="inputMain inputFirstColumn" [(ngModel)]="username" type="text">
+                <label class="labelMain labelSecondColumn">Kennwort</label>
+                <input class="inputMain inputSecondColumn" [(ngModel)]="password" type="text">
+            </div>
+
+            <h4 style="margin-bottom: 12px;">Persönliche Daten</h4>
+            <div style="display: flex; flex-direction: row; margin-bottom: 9px; margin-left: 32px;">
+                <label class="labelMain">Vorname</label>
+                <input class="inputMain inputFirstColumn" [(ngModel)]="nameI" type="text">
+                <label class="labelMain labelSecondColumn">Nachname</label>
+                <input class="inputMain inputSecondColumn" [(ngModel)]="nameII" type="text">
+            </div>
+            <div style="display: flex; flex-direction: row; margin-bottom: 24px; margin-left: 32px;">
+                <label class="labelMain">Straße</label>
+                <input class="inputMain inputFirstColumn" [(ngModel)]="street" type="text">
+                <label class="labelMain labelSecondColumn" style="width: 50px;">Nr.</label>
+                <input class="inputMain inputSecondColumn" style="width: 50px;" [(ngModel)]="houseNumber" type="text">
+                <label class="labelMain labelThirdColumn" style="width: 50px;">PLZ</label>
+                <input class="inputMain inputThirdColumn" style="width: 50px;" [(ngModel)]="plz" type="text">
+                <label class="labelMain label4thColumn">Ort</label>
+                <input class="inputMain input4thColumn" [(ngModel)]="place" type="text">
+            </div>
+
+            <h4 style="margin-bottom: 12px;">Arbeitsrelavante Einstellungen</h4>
+            <div style="display: flex; flex-direction: row; margin-bottom: 24px; margin-left: 32px;">
+                <label class="labelMain" style="margin-right: 12px;">Abteilung</label>
+                <select id="department" class="form-control dropdown" name="department" [(ngModel)]="department" >
+                    <option *ngFor="let dept of departments" [value]="dept.name">
+                        {{dept.name}}
+                    </option>
+                </select>
+                <!--<select id="department-type" class="form-control dropdown dept-type" name="department-type" [(ngModel)]="departmentType" >-->
+                <!--<option *ngFor="let deptType of deptTypes" [value]="deptType">-->
+                <!--{{deptType}}-->
+                <!--</option>-->
+                <!--</select>-->
+                <label class="labelMain">Urlaubsanspruch</label><p style="font-size: 10px; color: #505050; padding-top: 6px; margin-left: 4px; margin-right: 12px;">(Regelanspruch)</p>
+                <input class="inputMain" [(ngModel)]="vacationClaim" type="text">
+                <label class="labelMain">Urlaubsanspruch</label><p style="font-size: 10px; color: #505050; padding-top: 6px; margin-left: 4px; margin-right: 12px;">(Bei Beginn, falls abw.)</p>
+                <input class="inputMain" [(ngModel)]="vacationClaimFirstYear" type="text">
+            </div>
+
+            <h4 style="margin-bottom: 12px;">Lohnrelavante Einstellungen</h4>
+
+            <button style="margin-top: 12px" (click)="onClickSave()">Speichern</button>
+        </div>
+    </div>
+</div>
+
+
+
+
